@@ -1,5 +1,6 @@
 modLoader="javafml"
 loaderVersion="[35,)"
+license="MIT License"
 
 [[mods]]
 modId="botwmod"
@@ -9,8 +10,6 @@ authors="Mozz"
 description='''
 A mod based off of The Legend of Zelda Breath of the Wild
 '''
-
-license="MIT License"
 
 [[dependencies.botwmod]]
     modId="forge"

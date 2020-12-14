@@ -1,0 +1,12 @@
+{
+  "block.botwmod.amber_ore": "Amber Ore",
+  "block.botwmod.opal_ore": "Opal Ore",
+  "block.botwmod.ruby_ore": "Ruby Ore",
+  "block.botwmod.sapphire_ore": "Sapphire Ore",
+  "block.botwmod.topaz_ore": "Topaz Ore",
+  "item.botwmod.amber": "Amber",
+  "item.botwmod.opal": "Opal",
+  "item.botwmod.ruby": "Ruby",
+  "item.botwmod.sapphire": "Sapphire",
+  "item.botwmod.topaz": "Topaz"
+}

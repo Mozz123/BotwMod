@@ -27,7 +27,7 @@ public class BotwMod {
         instance = this;
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        //MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, OreGeneration::onBiomeLoadingEvent);
+        MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, OreGeneration::onBiomeLoadingEvent);
 
         REGISTRATE = Registrate.create(BotwMod.MODID);
         REGISTRATE.itemGroup(() -> ITEM_GROUP);

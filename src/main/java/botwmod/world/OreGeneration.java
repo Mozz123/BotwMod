@@ -17,9 +17,8 @@ public class OreGeneration {
 
     public static Decoration undergroundOre = GenerationStage.Decoration.UNDERGROUND_ORES;
 
-    /*
-    public static ConfiguredFeature<?, ?> ORE_AMBER = Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, ModBlocks.AMBER_ORE.get().getDefaultState(), 9000))
-            .range(300).square().func_242731_b(50);
+    public static ConfiguredFeature<?, ?> ORE_AMBER = Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, ModBlocks.AMBER_ORE.get().getDefaultState(), 9))
+            .range(32).square().func_242731_b(2);
     public static ConfiguredFeature<?, ?> ORE_OPAL = Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, ModBlocks.OPAL_ORE.get().getDefaultState(), 9))
             .range(32).square().func_242731_b(2);
     public static ConfiguredFeature<?, ?> ORE_RUBY= Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, ModBlocks.RUBY_ORE.get().getDefaultState(), 9))
@@ -38,5 +37,4 @@ public class OreGeneration {
             event.getGeneration().withFeature(undergroundOre, ORE_AMBER).withFeature(undergroundOre, ORE_OPAL).withFeature(undergroundOre, ORE_RUBY).withFeature(undergroundOre, ORE_SAPPHIRE).withFeature(undergroundOre, ORE_TOPAZ);
         }
     }
-     */
 }

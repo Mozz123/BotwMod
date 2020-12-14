@@ -21,9 +21,6 @@ repositories {
         name 'tterrag maven'
         url "https://maven.tterrag.com/"
     }
-    maven {  // Patchouli
-        url 'https://maven.blamejared.com'
-    }
 }
 
 apply plugin: 'net.minecraftforge.gradle'
@@ -89,8 +86,6 @@ configurations {
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.16.4-35.1.10'
-
-    compile fg.deobf("vazkii.patchouli:Patchouli:1.16-39")
 
     def registrate = "com.tterrag.registrate:Registrate:MC1.16.2-1.0.0-beta.19"
     implementation fg.deobf(registrate)

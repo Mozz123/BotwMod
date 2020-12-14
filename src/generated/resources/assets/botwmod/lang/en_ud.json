@@ -1,0 +1,12 @@
+{
+  "block.botwmod.amber_ore": "\u01DD\u0279O \u0279\u01DDq\u026F\u2C6F",
+  "block.botwmod.opal_ore": "\u01DD\u0279O \u05DF\u0250dO",
+  "block.botwmod.ruby_ore": "\u01DD\u0279O \u028Eqn\u1D1A",
+  "block.botwmod.sapphire_ore": "\u01DD\u0279O \u01DD\u0279\u0131\u0265dd\u0250S",
+  "block.botwmod.topaz_ore": "\u01DD\u0279O z\u0250do\u27D8",
+  "item.botwmod.amber": "\u0279\u01DDq\u026F\u2C6F",
+  "item.botwmod.opal": "\u05DF\u0250dO",
+  "item.botwmod.ruby": "\u028Eqn\u1D1A",
+  "item.botwmod.sapphire": "\u01DD\u0279\u0131\u0265dd\u0250S",
+  "item.botwmod.topaz": "z\u0250do\u27D8"
+}

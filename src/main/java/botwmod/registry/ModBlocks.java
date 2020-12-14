@@ -32,16 +32,10 @@ public class ModBlocks {
 
     // Ores
     public static final RegistryEntry<AmberOreBlock> AMBER_ORE = registerGemstoneOre("amber_ore", "Amber Ore", ModItems.AMBER);
-    /*
-    public static final RegistryEntry<AmberOreBlock> OPAL_ORE = REGISTRATE.object("opal_ore").block(AmberOreBlock::new).initialProperties(Material.ROCK, Material.ROCK.getColor()).properties(p -> p.hardnessAndResistance(3.0f, 3.0f))
-            .defaultBlockstate().defaultLoot().simpleItem().register();
-    public static final RegistryEntry<AmberOreBlock> RUBY_ORE = REGISTRATE.object("ruby_ore").block(AmberOreBlock::new).initialProperties(Material.ROCK, Material.ROCK.getColor()).properties(p -> p.hardnessAndResistance(3.0f, 3.0f))
-            .defaultBlockstate().defaultLoot().simpleItem().register();
-    public static final RegistryEntry<AmberOreBlock> SAPPHIRE_ORE = REGISTRATE.object("sapphire_ore").block(AmberOreBlock::new).initialProperties(Material.ROCK, Material.ROCK.getColor()).properties(p -> p.hardnessAndResistance(3.0f, 3.0f))
-            .defaultBlockstate().defaultLoot().simpleItem().register();
-    public static final RegistryEntry<AmberOreBlock> TOPAZ_ORE = REGISTRATE.object("topaz_ore").block(AmberOreBlock::new).initialProperties(Material.ROCK, Material.ROCK.getColor()).properties(p -> p.hardnessAndResistance(3.0f, 3.0f))
-            .defaultBlockstate().defaultLoot().simpleItem().register();
-     */
+    public static final RegistryEntry<AmberOreBlock> OPAL_ORE = registerGemstoneOre("opal_ore", "Opal Ore", ModItems.OPAL);
+    public static final RegistryEntry<AmberOreBlock> RUBY_ORE = registerGemstoneOre("ruby_ore", "Ruby Ore", ModItems.RUBY);
+    public static final RegistryEntry<AmberOreBlock> SAPPHIRE_ORE = registerGemstoneOre("sapphire_ore", "Sapphire Ore", ModItems.SAPPHIRE);
+    public static final RegistryEntry<AmberOreBlock> TOPAZ_ORE = registerGemstoneOre("topaz_ore", "Topaz Ore", ModItems.TOPAZ);
 
     // Presets
     public static final RegistryEntry<AmberOreBlock> registerGemstoneOre(String id, String lang, NonNullSupplier<Item> gemstone) {
@@ -51,7 +45,7 @@ public class ModBlocks {
                                 .rolls(new RandomValueRange(1))
                                 .addEntry(AlternativesLootEntry.builder(ItemLootEntry.builder(block)
                                         .acceptCondition(Alternative.builder(MatchTool.builder(ItemPredicate.Builder.create().enchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.IntBound.atLeast(1))))))))
-                                .addEntry(ItemLootEntry.builder((StandaloneLootEntry.ILootEntryBuilder) gemstone)
+                                .addEntry(ItemLootEntry.builder(gemstone.get())
                                         .acceptFunction(ApplyBonus.oreDrops(Enchantments.FORTUNE)))))).simpleItem().register();
     }
 
