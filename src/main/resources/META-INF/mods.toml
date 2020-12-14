@@ -1,0 +1,27 @@
+modLoader="javafml"
+loaderVersion="[35,)"
+
+[[mods]]
+modId="botwmod"
+version="1.16.4-1"
+displayName="Breath of the Wild Mod"
+authors="Mozz"
+description='''
+A mod based off of The Legend of Zelda Breath of the Wild
+'''
+
+license="MIT License"
+
+[[dependencies.botwmod]]
+    modId="forge"
+    mandatory=true
+    versionRange="[35,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.botwmod]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.2,1.17)"
+    ordering="NONE"
+    side="BOTH"
