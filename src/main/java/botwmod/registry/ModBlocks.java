@@ -17,12 +17,8 @@ import net.minecraft.loot.*;
 import net.minecraft.loot.conditions.Alternative;
 import net.minecraft.loot.conditions.MatchTool;
 import net.minecraft.loot.functions.ApplyBonus;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.util.IItemProvider;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.function.Supplier;
 
 import static botwmod.BotwMod.REGISTRATE;
 
