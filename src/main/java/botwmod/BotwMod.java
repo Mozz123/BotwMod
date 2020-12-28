@@ -5,7 +5,6 @@ import botwmod.registry.ModItems;
 import botwmod.setup.CommonEventHandler;
 import botwmod.world.OreGeneration;
 import com.tterrag.registrate.Registrate;
-import net.minecraft.entity.LivingEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -13,8 +12,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.function.Consumer;
 
 @Mod(BotwMod.MODID)
 public class BotwMod {

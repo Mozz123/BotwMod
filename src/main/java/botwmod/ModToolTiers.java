@@ -2,12 +2,12 @@ package botwmod;
 
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.LazyValue;
 
 import java.util.function.Supplier;
 
 public enum ModToolTiers implements IItemTier {
-    MASTER_SWORD(4, 2031, 9.0F, 5.0F, 15, () -> {
+
+    MASTER_SWORD(4, 2031, 9.0F, 4.5f, 15, () -> {
         return Ingredient.EMPTY;
     });
 

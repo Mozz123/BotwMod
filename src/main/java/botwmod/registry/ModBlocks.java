@@ -2,14 +2,11 @@ package botwmod.registry;
 
 import botwmod.BotwMod;
 import botwmod.blocks.AmberOreBlock;
-import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import net.minecraft.advancements.criterion.EnchantmentPredicate;
 import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.advancements.criterion.MinMaxBounds;
-import net.minecraft.block.Block;
-import net.minecraft.block.OreBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Item;
