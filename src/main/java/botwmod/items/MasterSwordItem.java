@@ -4,12 +4,13 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.IItemTier;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 
 public class MasterSwordItem extends SwordItem {
-    public MasterSwordItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, Properties builderIn) {
-        super(tier, attackDamageIn, attackSpeedIn, builderIn);
+    public MasterSwordItem(IItemTier tier, int attackDamage, float attackSpeed, Item.Properties builder) {
+        super(tier, attackDamage, attackSpeed, builder);
     }
 
     @Override

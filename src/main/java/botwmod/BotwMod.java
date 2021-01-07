@@ -1,10 +1,12 @@
 package botwmod;
 
 import botwmod.registry.ModBlocks;
+import botwmod.registry.ModEntities;
 import botwmod.registry.ModItems;
 import botwmod.setup.CommonEventHandler;
 import botwmod.world.OreGeneration;
 import com.tterrag.registrate.Registrate;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -34,7 +36,12 @@ public class BotwMod {
 
         ModBlocks.load();
         ModItems.load();
+        ModEntities.load();
 
         MinecraftForge.EVENT_BUS.register(this);
+    }
+
+    public static ResourceLocation rl(String path) {
+        return new ResourceLocation(BotwMod.MODID, path);
     }
 }

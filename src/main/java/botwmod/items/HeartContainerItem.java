@@ -17,27 +17,27 @@ public class HeartContainerItem extends Item {
     static final int COOLDOWN = 10;
     private static final UUID healthModifierUuid = UUID.fromString("89597ef8-44bf-11eb-b378-0242ac130002");
 
-    public HeartContainerItem(Properties properties) {
+    public HeartContainerItem(Item.Properties properties) {
         super(properties);
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        if (playerIn.getCooldownTracker().hasCooldown(this)) {
-            return super.onItemRightClick(worldIn, playerIn, handIn);
+    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
+        if (player.getCooldownTracker().hasCooldown(this)) {
+            return super.onItemRightClick(world, player, hand);
         }
-        playerIn.getFoodStats().addStats(1, 4);
-        ModifiableAttributeInstance healthAttribute = playerIn.getAttribute(Attributes.MAX_HEALTH);
+        player.getFoodStats().addStats(1, 4);
+        ModifiableAttributeInstance healthAttribute = player.getAttribute(Attributes.MAX_HEALTH);
         if (healthAttribute.getValue() < MAX) {
             AttributeModifier oldHealthModifier = healthAttribute.getModifier(healthModifierUuid);
             double addedHealth = (oldHealthModifier == null) ? +4.0D : oldHealthModifier.getAmount() + 4.0D;
             healthAttribute.removeModifier(healthModifierUuid);
             AttributeModifier healthModifier = new AttributeModifier(healthModifierUuid, "Heart Container HP Bonus", addedHealth, AttributeModifier.Operation.ADDITION);
             healthAttribute.applyPersistentModifier(healthModifier);
-            playerIn.getCooldownTracker().setCooldown(this, COOLDOWN);
-            playerIn.getHeldItem(handIn).shrink(1);
+            player.getCooldownTracker().setCooldown(this, COOLDOWN);
+            player.getHeldItem(hand).shrink(1);
         }
-        return super.onItemRightClick(worldIn, playerIn, handIn);
+        return super.onItemRightClick(world, player, hand);
     }
 
 }

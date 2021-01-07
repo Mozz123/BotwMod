@@ -6,6 +6,7 @@ import botwmod.items.HeartContainerItem;
 import botwmod.items.MasterSwordItem;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.item.Item;
+import net.minecraft.item.Rarity;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -24,7 +25,7 @@ public class ModItems {
 
     // Foods
     public static final RegistryEntry<HeartContainerItem> HEART_CONTAINER = REGISTRATE.item("heart_container", HeartContainerItem::new).defaultLang()
-            .properties(p -> p.maxStackSize(16)).register();
+            .properties(p -> p.maxStackSize(16).rarity(Rarity.RARE)).register();
 
     // Swords
     public static final RegistryEntry<MasterSwordItem> MASTER_SWORD = REGISTRATE.item("master_sword", prop -> new MasterSwordItem(ModToolTiers.MASTER_SWORD, 3, -2.4f, prop))
