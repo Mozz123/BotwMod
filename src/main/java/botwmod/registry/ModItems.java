@@ -1,7 +1,6 @@
 package botwmod.registry;
 
 import botwmod.BotwMod;
-import botwmod.ModToolTiers;
 import botwmod.items.HeartContainerItem;
 import botwmod.items.MasterSwordItem;
 import com.tterrag.registrate.util.entry.RegistryEntry;

@@ -63,7 +63,7 @@ public class MasterSwordBeamEntity extends AbstractArrowEntity {
 
     public void tick() {
         super.tick();
-        noClip = true;
+        noClip = false;
         float sqrt = MathHelper.sqrt(this.getMotion().x * this.getMotion().x + this.getMotion().z * this.getMotion().z);
         if ((sqrt < 0.1F) && this.ticksExisted > 200) {
             this.remove();
@@ -188,6 +188,11 @@ public class MasterSwordBeamEntity extends AbstractArrowEntity {
 
     public void setKnockbackStrength(int knockbackStrengthIn) {
         this.knockbackStrength = knockbackStrengthIn;
+    }
+
+    protected void onImpact (RayTraceResult result) {
+        super.onImpact(result);
+        this.remove();
     }
 
     protected void onEntityHit(EntityRayTraceResult p_213868_1_) {

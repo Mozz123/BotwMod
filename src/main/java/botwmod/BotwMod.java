@@ -3,6 +3,7 @@ package botwmod;
 import botwmod.registry.ModBlocks;
 import botwmod.registry.ModEntities;
 import botwmod.registry.ModItems;
+import botwmod.setup.ClientEventHandler;
 import botwmod.setup.CommonEventHandler;
 import botwmod.world.OreGeneration;
 import com.tterrag.registrate.Registrate;
@@ -27,6 +28,7 @@ public class BotwMod {
 
     public BotwMod() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(CommonEventHandler::init);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientEventHandler::init);
         MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, OreGeneration::onBiomeLoadingEvent);
 
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();

@@ -1,4 +1,4 @@
-package botwmod;
+package botwmod.registry;
 
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.crafting.Ingredient;
