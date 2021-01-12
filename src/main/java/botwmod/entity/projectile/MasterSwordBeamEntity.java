@@ -60,35 +60,33 @@ public class MasterSwordBeamEntity extends AbstractArrowEntity {
 
     @Override
     public void tick() {
+        super.tick();
+
         Entity thrower = func_234616_v_();
-        if (thrower instanceof net.minecraft.entity.player.PlayerEntity && !thrower.isAlive()) {
-            remove();
-            return;
-        }
-        // remove if too old
+
         if(this.ticksExisted > lifespan) {
             remove();
             return;
         }
-        // check for impact
-        if(!this.getEntityWorld().isRemote()) {
+        if (thrower instanceof net.minecraft.entity.player.PlayerEntity && !thrower.isAlive()) {
+            remove();
+            return;
+        }
+
+        if(!this.world.isRemote()) {
             RayTraceResult raytraceresult = ProjectileHelper.func_234618_a_(this, this::func_230298_a_);
             if (raytraceresult != null && raytraceresult.getType() != RayTraceResult.Type.MISS
                     && !net.minecraftforge.event.ForgeEventFactory.onProjectileImpact(this, raytraceresult)) {
                 this.onImpact(raytraceresult);
             }
         }
-        // movement
         Vector3d motion = this.getMotion();
         double d0 = this.getPosX() + motion.x;
         double d1 = this.getPosY() + motion.y;
         double d2 = this.getPosZ() + motion.z;
-        // lerp rotation and pitch
-        this.func_234617_x_();
-        // actually move the entity
         this.setPosition(d0, d1, d2);
-        // super method
-        super.tick();
+
+        this.func_234617_x_();
     }
 
     @Override
@@ -101,6 +99,14 @@ public class MasterSwordBeamEntity extends AbstractArrowEntity {
     @Override
     protected ItemStack getArrowStack() {
         return ItemStack.EMPTY;
+    }
+
+    @Override
+    protected void onImpact(RayTraceResult raytrace) {
+        super.onImpact(raytrace);
+        if (this.isAlive()) {
+            remove();
+        }
     }
 
     @Override
