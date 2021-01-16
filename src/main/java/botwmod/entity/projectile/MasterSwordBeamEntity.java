@@ -36,17 +36,17 @@ import java.util.List;
 
 public class MasterSwordBeamEntity extends AbstractArrowEntity {
 
-    protected int lifespan = 300;
+    protected int lifespan = 160;
 
     public MasterSwordBeamEntity (EntityType type, World world) {
         super(type, world);
-        this.setDamage(5F);
+        this.setDamage(10F);
     }
 
     public MasterSwordBeamEntity(EntityType type, World worldIn, double x, double y, double z, float r, float g, float b) {
         this(type, worldIn);
         this.setPosition(x, y, z);
-        this.setDamage(5F);
+        this.setDamage(10F);
     }
 
     public MasterSwordBeamEntity(EntityType type, World worldIn, LivingEntity shooter, double dmg) {
@@ -63,7 +63,16 @@ public class MasterSwordBeamEntity extends AbstractArrowEntity {
         super.tick();
 
         Entity thrower = func_234616_v_();
-
+        double d0 = 0;
+        double d1 = 0.0D;
+        double d2 = 0.01D;
+        double x = this.getPosX() + (double) (this.rand.nextFloat() * this.getWidth() * 2.0F) - (double) this.getWidth();
+        double y = this.getPosY() + (double) (this.rand.nextFloat() * this.getHeight()) - (double) this.getHeight();
+        double z = this.getPosZ() + (double) (this.rand.nextFloat() * this.getWidth() * 2.0F) - (double) this.getWidth();
+        float f = (this.getWidth() + this.getHeight() + this.getWidth()) * 0.333F + 0.5F;
+        if (particleDistSq(x, y, z) < f * f) {
+            this.world.addParticle(ParticleTypes.SNEEZE, x, y + 0.5D, z, d0, d1, d2);
+        }
         if(this.ticksExisted > lifespan) {
             remove();
             return;
@@ -72,19 +81,6 @@ public class MasterSwordBeamEntity extends AbstractArrowEntity {
             remove();
             return;
         }
-
-        if(!this.world.isRemote()) {
-            RayTraceResult raytraceresult = ProjectileHelper.func_234618_a_(this, this::func_230298_a_);
-            if (raytraceresult != null && raytraceresult.getType() != RayTraceResult.Type.MISS
-                    && !net.minecraftforge.event.ForgeEventFactory.onProjectileImpact(this, raytraceresult)) {
-                this.onImpact(raytraceresult);
-            }
-        }
-        Vector3d motion = this.getMotion();
-        double d0 = this.getPosX() + motion.x;
-        double d1 = this.getPosY() + motion.y;
-        double d2 = this.getPosZ() + motion.z;
-        this.setPosition(d0, d1, d2);
 
         this.func_234617_x_();
     }
@@ -99,6 +95,13 @@ public class MasterSwordBeamEntity extends AbstractArrowEntity {
     @Override
     protected ItemStack getArrowStack() {
         return ItemStack.EMPTY;
+    }
+
+    public double particleDistSq(double toX, double toY, double toZ) {
+        double d0 = getPosX() - toX;
+        double d1 = getPosY() - toY;
+        double d2 = getPosZ() - toZ;
+        return d0 * d0 + d1 * d1 + d2 * d2;
     }
 
     @Override

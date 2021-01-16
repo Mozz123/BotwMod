@@ -7,7 +7,7 @@ import java.util.function.Supplier;
 
 public enum ModToolTiers implements IItemTier {
 
-    MASTER_SWORD(4, 2327, 9.5F, 5.0f, 16, () -> {
+    MASTER_SWORD(4, 2327, 9.5F, 7.0f, 0, () -> {
         return Ingredient.EMPTY;
     });
 

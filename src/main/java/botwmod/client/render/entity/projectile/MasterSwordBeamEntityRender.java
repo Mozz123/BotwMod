@@ -20,7 +20,7 @@ import net.minecraft.util.math.vector.Vector3f;
 
 public class MasterSwordBeamEntityRender<T extends MasterSwordBeamEntity> extends EntityRenderer<T> {
 
-    private ItemStack TEXTURE = new ItemStack(ModItems.MASTER_SWORD.get());
+    private ItemStack TEXTURE = new ItemStack(ModItems.BEAM_ATTACK.get());
     private static final float SCALE = 0.8F;
 
     public MasterSwordBeamEntityRender(EntityRendererManager renderManager) {
@@ -36,11 +36,9 @@ public class MasterSwordBeamEntityRender<T extends MasterSwordBeamEntity> extend
     public void render(T entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
         matrixStackIn.push();
         matrixStackIn.rotate(Vector3f.YP.rotationDegrees(MathHelper.lerp(partialTicks, entityIn.prevRotationYaw, entityIn.rotationYaw) - 90.0F));
-        matrixStackIn.rotate(Vector3f.ZP.rotationDegrees(MathHelper.lerp(partialTicks, entityIn.prevRotationPitch, entityIn.rotationPitch)));
+        matrixStackIn.rotate(Vector3f.ZP.rotationDegrees(MathHelper.lerp(partialTicks, entityIn.prevRotationPitch, entityIn.rotationPitch) - 90.0F));
         matrixStackIn.translate(0, 0.5F, 0);
         matrixStackIn.scale(2F, 2F, 2F);
-        matrixStackIn.rotate(new Quaternion(Vector3f.YP, 0F, true));
-        matrixStackIn.rotate(new Quaternion(Vector3f.ZN, (entityIn.ticksExisted + partialTicks) * 30F, true));
         matrixStackIn.translate(0, -0.15F, 0);
         Minecraft.getInstance().getItemRenderer().renderItem(TEXTURE, ItemCameraTransforms.TransformType.GROUND, 240, OverlayTexture.NO_OVERLAY, matrixStackIn, bufferIn);
         matrixStackIn.pop();
