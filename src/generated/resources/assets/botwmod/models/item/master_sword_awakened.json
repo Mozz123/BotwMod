@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "botwmod:item/master_sword_awakened"
+  }
+}

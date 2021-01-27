@@ -9,6 +9,9 @@ public enum ModToolTiers implements IItemTier {
 
     MASTER_SWORD(4, 2327, 9.5F, 7.0f, 0, () -> {
         return Ingredient.EMPTY;
+    }),
+    MASTER_SWORD_AWAKENED(4, 2327, 9.5F, 15.0f, 0, () -> {
+        return Ingredient.EMPTY;
     });
 
     private final int harvestLevel;

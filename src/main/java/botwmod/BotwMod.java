@@ -3,15 +3,18 @@ package botwmod;
 import botwmod.registry.ModBlocks;
 import botwmod.registry.ModEntities;
 import botwmod.registry.ModItems;
+import botwmod.registry.ModProfessions;
 import botwmod.setup.ClientEventHandler;
 import botwmod.setup.CommonEventHandler;
 import botwmod.world.OreGeneration;
 import com.tterrag.registrate.Registrate;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.village.PointOfInterestType;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -39,11 +42,9 @@ public class BotwMod {
         ModBlocks.load();
         ModItems.load();
         ModEntities.load();
+        ModProfessions.PROFESSIONS.register(modEventBus);
+        ModProfessions.POI_TYPES.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
-    }
-
-    public static ResourceLocation rl(String path) {
-        return new ResourceLocation(BotwMod.MODID, path);
     }
 }

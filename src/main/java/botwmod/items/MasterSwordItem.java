@@ -2,6 +2,7 @@ package botwmod.items;
 
 import botwmod.entity.projectile.MasterSwordBeamEntity;
 import botwmod.registry.ModEntities;
+import botwmod.registry.ModItems;
 import botwmod.setup.CommonEventHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -27,7 +28,7 @@ public class MasterSwordItem extends SwordItem {
 
         if (entity instanceof LivingEntity) {
             LivingEntity livingEntity = (LivingEntity) entity;
-            if (durabilityLeft <= 2) {
+            if (durabilityLeft <= 2 && stack.getItem() == ModItems.MASTER_SWORD.get()) {
                 player.getCooldownTracker().setCooldown(this, 18000);
                 stack.setDamage(0);
             }
@@ -39,7 +40,7 @@ public class MasterSwordItem extends SwordItem {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
         ItemStack itemstack = playerIn.getHeldItem(handIn);
-        CommonEventHandler.onLeftClick(playerIn, itemstack);
+        CommonEventHandler.onRightClick(playerIn, itemstack);
         return ActionResult.func_233538_a_(itemstack, worldIn.isRemote());
     }
 }
