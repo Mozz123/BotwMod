@@ -8,11 +8,9 @@ import botwmod.registry.ModProfessions;
 import com.google.common.collect.Multimap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -20,7 +18,6 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.item.MerchantOffer;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -30,8 +27,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.BasicTrade;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -40,7 +35,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 @Mod.EventBusSubscriber(modid = BotwMod.MODID)
 @ParametersAreNonnullByDefault
@@ -90,17 +84,17 @@ public class CommonEventHandler {
         Int2ObjectMap<List<VillagerTrades.ITrade>> trademap = event.getTrades();
 
         trademap.get(1).addAll(Arrays.asList(
-                sellItem(new ItemStack(ModItems.AMBER.get(), 1), 1, 16, 1, 2),
-                sellItem(new ItemStack(ModItems.OPAL.get(), 1), 1, 16, 1, 2)
+                sellItem(new ItemStack(ModItems.AMBER.get(), 5), 30, 8, 1, 2),
+                sellItem(new ItemStack(ModItems.OPAL.get(), 5), 30, 8, 1, 2)
         ));
 
         trademap.get(2).addAll(Arrays.asList(
-                sellItem(new ItemStack(ModItems.TOPAZ.get(), 1), 2, 8, 2, 2),
-                sellItem(new ItemStack(ModItems.RUBY.get(), 1), 2, 8, 2, 2)
+                sellItem(new ItemStack(ModItems.TOPAZ.get(), 4), 30, 6, 2, 2),
+                sellItem(new ItemStack(ModItems.RUBY.get(), 4), 30, 6, 2, 2)
         ));
 
         trademap.get(3).addAll(Arrays.asList(
-                sellItem(new ItemStack(ModItems.SAPPHIRE.get(), 1), 3, 4, 1, 2)
+                sellItem(new ItemStack(ModItems.SAPPHIRE.get(), 3), 30, 4, 1, 2)
         ));
     }
 

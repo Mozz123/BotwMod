@@ -1,7 +1,5 @@
 package botwmod.items;
 
-import botwmod.entity.projectile.MasterSwordBeamEntity;
-import botwmod.registry.ModEntities;
 import botwmod.registry.ModItems;
 import botwmod.setup.CommonEventHandler;
 import net.minecraft.entity.Entity;
@@ -13,8 +11,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.math.vector.Vector3f;
 import net.minecraft.world.World;
 
 public class MasterSwordItem extends SwordItem {

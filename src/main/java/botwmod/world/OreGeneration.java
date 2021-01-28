@@ -13,13 +13,13 @@ public class OreGeneration {
 
     public static Decoration undergroundOre = GenerationStage.Decoration.UNDERGROUND_ORES;
 
-    public static ConfiguredFeature<?, ?> ORE_AMBER = Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, ModBlocks.AMBER_ORE.get().getDefaultState(), 3))
+    public static ConfiguredFeature<?, ?> ORE_AMBER = Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, ModBlocks.AMBER_ORE.get().getDefaultState(), 4))
             .range(16).square();
-    public static ConfiguredFeature<?, ?> ORE_OPAL = Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, ModBlocks.OPAL_ORE.get().getDefaultState(), 3))
+    public static ConfiguredFeature<?, ?> ORE_OPAL = Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, ModBlocks.OPAL_ORE.get().getDefaultState(), 4))
             .range(16).square();
     public static ConfiguredFeature<?, ?> ORE_RUBY= Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, ModBlocks.RUBY_ORE.get().getDefaultState(), 3))
             .range(16).square();
-    public static ConfiguredFeature<?, ?> ORE_SAPPHIRE= Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, ModBlocks.SAPPHIRE_ORE.get().getDefaultState(), 3))
+    public static ConfiguredFeature<?, ?> ORE_SAPPHIRE= Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, ModBlocks.SAPPHIRE_ORE.get().getDefaultState(), 2))
             .range(16).square();
     public static ConfiguredFeature<?, ?> ORE_TOPAZ = Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, ModBlocks.TOPAZ_ORE.get().getDefaultState(), 3))
             .range(16).square();

@@ -5,7 +5,6 @@ import botwmod.items.HeartContainerItem;
 import botwmod.items.MasterSwordItem;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Rarity;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

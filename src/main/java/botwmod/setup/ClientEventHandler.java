@@ -1,8 +1,8 @@
 package botwmod.setup;
 
 import botwmod.BotwMod;
-import botwmod.registry.ModEntities;
 import botwmod.client.render.entity.projectile.MasterSwordBeamEntityRender;
+import botwmod.registry.ModEntities;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
