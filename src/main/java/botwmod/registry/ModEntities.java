@@ -1,6 +1,7 @@
 package botwmod.registry;
 
 import botwmod.BotwMod;
+import botwmod.entity.projectile.BombItemEntity;
 import botwmod.entity.projectile.MasterSwordBeamEntity;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.entity.EntityClassification;
@@ -15,6 +16,8 @@ public class ModEntities {
 
     public static final RegistryEntry<EntityType<MasterSwordBeamEntity>> MASTER_SWORD = REGISTRATE.<MasterSwordBeamEntity>entity("master_sword", MasterSwordBeamEntity::new, EntityClassification.MISC)
             .properties(prop -> prop.size(0.5F, 0.5F).setCustomClientFactory(MasterSwordBeamEntity::new)).register();
+    public static final RegistryEntry<EntityType<BombItemEntity>> BOMB = REGISTRATE.<BombItemEntity>entity("bomb", BombItemEntity::new, EntityClassification.MISC)
+            .properties(prop -> prop.size(0.5F, 0.5F)).register();
 
     public static void load() {
         LOGGER.info("Entities Registered");

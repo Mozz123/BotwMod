@@ -34,7 +34,6 @@ public class BotwMod {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         REGISTRATE = Registrate.create(BotwMod.MODID);
-        REGISTRATE.itemGroup(() -> ITEM_GROUP);
 
         ModBlocks.load();
         ModItems.load();

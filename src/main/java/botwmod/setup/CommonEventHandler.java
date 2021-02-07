@@ -27,6 +27,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.BasicTrade;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -72,6 +73,9 @@ public class CommonEventHandler {
                 Vector3f vector3f = new Vector3f(vector3d);
                 shot.shoot(vector3f.getX(), vector3f.getY(), vector3f.getZ(), 1.0F, 0.5F);
                 living.world.addEntity(shot);
+                stack.damageItem(2, living, (entity) -> {
+                    entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+                });
         }
     }
 

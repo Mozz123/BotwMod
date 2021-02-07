@@ -1,6 +1,8 @@
 package botwmod.registry;
 
+import botwmod.BOTWItemGroup;
 import botwmod.BotwMod;
+import botwmod.items.BombItem;
 import botwmod.items.HeartContainerItem;
 import botwmod.items.MasterSwordItem;
 import com.tterrag.registrate.util.entry.RegistryEntry;
@@ -23,7 +25,6 @@ public class ModItems {
     public static final RegistryEntry<Item> TOPAZ = REGISTRATE.item("topaz", Item::new).defaultLang().properties(p -> p).register();
 
     // Key Items
-
     public static final RegistryEntry<HeartContainerItem> HEART_CONTAINER = REGISTRATE.item("heart_container", HeartContainerItem::new).defaultLang()
             .properties(p -> p.maxStackSize(16).rarity(Rarity.RARE)).register();
 
@@ -33,8 +34,9 @@ public class ModItems {
     public static final RegistryEntry<MasterSwordItem> MASTER_SWORD_AWAKENED = REGISTRATE.item("master_sword_awakened", prop -> new MasterSwordItem(ModToolTiers.MASTER_SWORD_AWAKENED, 14, -2.4f, prop))
             .model((ctx, provider) -> provider.handheld(ctx::getEntry)).register();
 
-    // Misc
+    // Projectiles
     public static final RegistryEntry<Item> BEAM_ATTACK = REGISTRATE.item("beam_attack", Item::new).defaultLang().properties(p -> p).register();
+    public static final RegistryEntry<BombItem> BOMB = REGISTRATE.item("bomb", BombItem::new).defaultLang().properties(p -> p).register();
 
     public static void load() {
         LOGGER.info("Items registered");
