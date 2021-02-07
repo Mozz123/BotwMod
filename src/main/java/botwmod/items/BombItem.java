@@ -21,9 +21,6 @@ import net.minecraft.world.World;
 
 public class BombItem extends Item {
 
-    protected int radius = 4;
-    protected int cooldown = 20;
-
     public BombItem(Properties builder) {
 
         super(builder);
@@ -33,7 +30,7 @@ public class BombItem extends Item {
         ItemStack itemstack = playerIn.getHeldItem(handIn);
         worldIn.playSound((PlayerEntity)null, playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
         if (!worldIn.isRemote) {
-            BombItemEntity bomb = new BombItemEntity(ModEntities.BOMB.get(), worldIn);
+            BombItemEntity bomb = new BombItemEntity(worldIn, playerIn);
             bomb.setItem(itemstack);
             bomb.func_234612_a_(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
             worldIn.addEntity(bomb);

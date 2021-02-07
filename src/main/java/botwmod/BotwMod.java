@@ -6,12 +6,17 @@ import botwmod.registry.ModItems;
 import botwmod.registry.ModProfessions;
 import botwmod.setup.ClientEventHandler;
 import botwmod.setup.CommonEventHandler;
+import botwmod.setup.ModSpriteRenderer;
 import botwmod.world.OreGeneration;
 import com.tterrag.registrate.Registrate;
+import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.SpriteRenderer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -27,11 +32,11 @@ public class BotwMod {
     public static Registrate REGISTRATE;
 
     public BotwMod() {
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
         FMLJavaModLoadingContext.get().getModEventBus().addListener(CommonEventHandler::init);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientEventHandler::init);
         MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, OreGeneration::onBiomeLoadingEvent);
-
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         REGISTRATE = Registrate.create(BotwMod.MODID);
 
