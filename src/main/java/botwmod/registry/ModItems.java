@@ -1,13 +1,16 @@
 package botwmod.registry;
 
-import botwmod.BOTWItemGroup;
 import botwmod.BotwMod;
+import botwmod.entity.projectile.arrows.IceArrowEntity;
+import botwmod.items.arrows.BombArrowItem;
 import botwmod.items.BombItem;
 import botwmod.items.HeartContainerItem;
 import botwmod.items.MasterSwordItem;
+import botwmod.items.arrows.IceArrowItem;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.item.Item;
 import net.minecraft.item.Rarity;
+import net.minecraft.tags.ItemTags;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -37,6 +40,8 @@ public class ModItems {
     // Projectiles
     public static final RegistryEntry<Item> BEAM_ATTACK = REGISTRATE.item("beam_attack", Item::new).defaultLang().properties(p -> p).register();
     public static final RegistryEntry<BombItem> BOMB = REGISTRATE.item("bomb", BombItem::new).defaultLang().properties(p -> p).register();
+    public static final RegistryEntry<BombArrowItem> BOMB_ARROW = REGISTRATE.item("bomb_arrow", BombArrowItem::new).defaultLang().properties(p -> p).tag(ItemTags.ARROWS).register();
+    public static final RegistryEntry<IceArrowItem> ICE_ARROW = REGISTRATE.item("ice_arrow", IceArrowItem::new).defaultLang().properties(p -> p).tag(ItemTags.ARROWS).register();
 
     public static void load() {
         LOGGER.info("Items registered");

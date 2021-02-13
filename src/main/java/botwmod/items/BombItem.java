@@ -1,15 +1,7 @@
 package botwmod.items;
 
-import botwmod.entity.projectile.BombItemEntity;
-import botwmod.entity.projectile.MasterSwordBeamEntity;
-import botwmod.registry.ModEntities;
-import com.google.common.collect.Multimap;
-import net.minecraft.entity.ai.attributes.Attribute;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.Attributes;
+import botwmod.entity.projectile.BombEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.SnowballEntity;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Stats;
@@ -30,7 +22,7 @@ public class BombItem extends Item {
         ItemStack itemstack = playerIn.getHeldItem(handIn);
         worldIn.playSound((PlayerEntity)null, playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
         if (!worldIn.isRemote) {
-            BombItemEntity bomb = new BombItemEntity(worldIn, playerIn);
+            BombEntity bomb = new BombEntity(worldIn, playerIn);
             bomb.setItem(itemstack);
             bomb.func_234612_a_(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
             worldIn.addEntity(bomb);

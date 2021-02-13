@@ -3,8 +3,8 @@
 1d229192c0d7f138cba9d9b7e742960364d95836 assets/botwmod/blockstates/ruby_ore.json
 72a7639bd5743d14f80b4992eec5778c6cf8e7b8 assets/botwmod/blockstates/sapphire_ore.json
 fc82de991a638758c43d9ab4925626127aa3e155 assets/botwmod/blockstates/topaz_ore.json
-f45e513f0cceedf35ac08723e1aae630a9c51fca assets/botwmod/lang/en_ud.json
-4f48b7c44763f9f86c285bd7e410fc3162b20b65 assets/botwmod/lang/en_us.json
+1259b87c47afc84c77ea07c94d6a9c4ffc92df5c assets/botwmod/lang/en_ud.json
+717da6adcc6e49ca3a001e769d70d22a079d613f assets/botwmod/lang/en_us.json
 83c8fd2f7088646b2492032ec5ecd28cd03a1fe4 assets/botwmod/models/block/amber_ore.json
 14b14398024582470938507b51bfef83ca605c7f assets/botwmod/models/block/opal_ore.json
 ee88fdb7715ff5bce80d81e0d4ca4d43416ceac9 assets/botwmod/models/block/ruby_ore.json
@@ -14,7 +14,9 @@ f937ee434f3b1c5743f493a126e96cd61bf32988 assets/botwmod/models/item/amber.json
 127ea10f2e06a4b2b37113dcec0a9af1066c6d8f assets/botwmod/models/item/amber_ore.json
 04671fe11ee3ce66cd667bd6d74f31e241f5f7c7 assets/botwmod/models/item/beam_attack.json
 e4f029e1fe240b36b108cd0e27fa7185e3eac642 assets/botwmod/models/item/bomb.json
+5eb5b0e689642dd4f666627be83064711d40208d assets/botwmod/models/item/bomb_arrow.json
 1b9057b673649d21694047bc2caa27aa57edd9b0 assets/botwmod/models/item/heart_container.json
+b293c344e5eaf7f714a9f27d453866ccdea8d425 assets/botwmod/models/item/ice_arrow.json
 a2fca4d32dd0315bb59b4b9628bef21d424dc1b2 assets/botwmod/models/item/master_sword.json
 4ca8beb2152a49e3ee7c3d442ed763901c005241 assets/botwmod/models/item/master_sword_awakened.json
 9df54b2d832591c97debe2f6e43f52ee212b5ede assets/botwmod/models/item/opal.json
@@ -30,3 +32,4 @@ ea95a6d8ab7e97f8e820e840762d71808dff5d0b assets/botwmod/models/item/ruby_ore.jso
 163c1f98e1e6dd9ed45a51daead216c1d6418bd1 data/botwmod/loot_tables/blocks/ruby_ore.json
 36b77cfbc51b6d98c2b1223d38ee2e4efbbebfa5 data/botwmod/loot_tables/blocks/sapphire_ore.json
 3f2d08182f5a38a70b465321f9a5d4e3beda94d5 data/botwmod/loot_tables/blocks/topaz_ore.json
+2d836bcbd8ea41043725257fc91bbf8d01ba996d data/minecraft/tags/items/arrows.json

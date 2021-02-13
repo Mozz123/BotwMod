@@ -1,8 +1,10 @@
 package botwmod.registry;
 
 import botwmod.BotwMod;
-import botwmod.entity.projectile.BombItemEntity;
+import botwmod.entity.projectile.BombEntity;
 import botwmod.entity.projectile.MasterSwordBeamEntity;
+import botwmod.entity.projectile.arrows.BombArrowEntity;
+import botwmod.entity.projectile.arrows.IceArrowEntity;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -16,8 +18,12 @@ public class ModEntities {
 
     public static final RegistryEntry<EntityType<MasterSwordBeamEntity>> MASTER_SWORD = REGISTRATE.<MasterSwordBeamEntity>entity("master_sword", MasterSwordBeamEntity::new, EntityClassification.MISC)
             .properties(prop -> prop.size(0.5F, 0.5F).setCustomClientFactory(MasterSwordBeamEntity::new)).register();
-    public static final RegistryEntry<EntityType<BombItemEntity>> BOMB = REGISTRATE.<BombItemEntity>entity("bomb", BombItemEntity::new, EntityClassification.MISC)
+    public static final RegistryEntry<EntityType<BombEntity>> BOMB = REGISTRATE.<BombEntity>entity("bomb", BombEntity::new, EntityClassification.MISC)
             .properties(prop -> prop.size(0.5F, 0.5F)).register();
+    public static final RegistryEntry<EntityType<BombArrowEntity>> BOMB_ARROW = REGISTRATE.<BombArrowEntity>entity("bomb_arrow", BombArrowEntity::new, EntityClassification.MISC)
+            .properties(prop -> prop.size(0.5F, 0.5F).setCustomClientFactory(BombArrowEntity::new)).register();
+    public static final RegistryEntry<EntityType<IceArrowEntity>> ICE_ARROW = REGISTRATE.<IceArrowEntity>entity("ice_arrow", IceArrowEntity::new, EntityClassification.MISC)
+            .properties(prop -> prop.size(0.5F, 0.5F).setCustomClientFactory(IceArrowEntity::new)).register();
 
     public static void load() {
         LOGGER.info("Entities Registered");
