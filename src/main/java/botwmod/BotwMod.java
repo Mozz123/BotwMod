@@ -1,9 +1,6 @@
 package botwmod;
 
-import botwmod.registry.ModBlocks;
-import botwmod.registry.ModEntities;
-import botwmod.registry.ModItems;
-import botwmod.registry.ModProfessions;
+import botwmod.registry.*;
 import botwmod.setup.ClientEventHandler;
 import botwmod.setup.CommonEventHandler;
 import botwmod.world.OreGeneration;
@@ -40,6 +37,7 @@ public class BotwMod {
         ModEntities.load();
         ModProfessions.PROFESSIONS.register(modEventBus);
         ModProfessions.POI_TYPES.register(modEventBus);
+        ModEffects.EFFECTS.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
     }

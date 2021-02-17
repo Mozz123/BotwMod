@@ -54,22 +54,6 @@ public class IceArrowEntity extends AbstractArrowEntity {
     }
 
     @Override
-    protected void onImpact(RayTraceResult result) {
-        super.onImpact(result);
-        if (!this.world.isRemote) {
-            if (result.getType() == RayTraceResult.Type.BLOCK) {
-                if (result instanceof BlockRayTraceResult) {
-                    World world = this.getEntityWorld();
-                    BlockRayTraceResult result1 = (BlockRayTraceResult) result;
-                    if (result1.isInside()) {
-                        System.out.printf("NIGGACUM");
-                    }
-                }
-            }
-        }
-    }
-
-    @Override
     public IPacket<?> createSpawnPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
