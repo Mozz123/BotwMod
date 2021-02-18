@@ -1,7 +1,6 @@
 package botwmod.client.render.entity.projectile;
 
 import botwmod.entity.projectile.BombEntity;
-import botwmod.entity.projectile.MasterSwordBeamEntity;
 import botwmod.registry.ModItems;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.Minecraft;

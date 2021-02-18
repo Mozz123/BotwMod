@@ -24,7 +24,7 @@ public class ModProfessions {
     @SuppressWarnings("UnstableApiUsage")
     public static final RegistryObject<VillagerProfession> JEWELER = PROFESSIONS.register("jeweler",
             () -> new VillagerProfession("jeweler", JEWELER_POI.get(),
-                    ImmutableSet.of(ItemStack.EMPTY.getItem()), ImmutableSet.of(Blocks.AIR), (SoundEvent)null)
+                    ImmutableSet.of(ItemStack.EMPTY.getItem()), ImmutableSet.of(Blocks.AIR), (SoundEvent) null)
     );
 
 }

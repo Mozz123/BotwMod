@@ -1,6 +1,5 @@
 package botwmod;
 
-import botwmod.registry.ModBlocks;
 import botwmod.registry.ModItems;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -20,13 +19,12 @@ public class BOTWItemGroup extends ItemGroup {
     }
 
     @Override
-    public void fill(NonNullList<ItemStack> items)
-    {
+    public void fill(NonNullList<ItemStack> items) {
         registerWeapons(items);
         registerValuables(items);
         registerKeyItems(items);
         registerProjectiles(items);
-	}
+    }
 
     private void registerWeapons(NonNullList<ItemStack> items) {
         items.add(new ItemStack(ModItems.MASTER_SWORD.get()));

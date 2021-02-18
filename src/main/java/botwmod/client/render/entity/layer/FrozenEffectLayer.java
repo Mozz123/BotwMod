@@ -46,7 +46,6 @@ public class FrozenEffectLayer extends LayerRenderer<LivingEntity, EntityModel<L
             IVertexBuilder ivertexbuilder = bufferIn.getBuffer(RenderType.getEntityTranslucent(FROZEN_LAYER_TEXTURE));
             model.render(matrixStackIn, ivertexbuilder, packedLightIn, 0, 1, 1, 1, 1);
             RenderSystem.color4f(1, 1, 1, 1);
-            System.out.println("hiimme");
         }
     }
 }

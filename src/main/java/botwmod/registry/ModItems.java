@@ -1,11 +1,10 @@
 package botwmod.registry;
 
 import botwmod.BotwMod;
-import botwmod.entity.projectile.arrows.IceArrowEntity;
-import botwmod.items.arrows.BombArrowItem;
 import botwmod.items.BombItem;
 import botwmod.items.HeartContainerItem;
 import botwmod.items.MasterSwordItem;
+import botwmod.items.arrows.BombArrowItem;
 import botwmod.items.arrows.IceArrowItem;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.item.Item;

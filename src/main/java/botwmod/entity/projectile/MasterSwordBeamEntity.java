@@ -21,7 +21,7 @@ public class MasterSwordBeamEntity extends AbstractArrowEntity {
 
     protected int lifespan = 160;
 
-    public MasterSwordBeamEntity (EntityType type, World world) {
+    public MasterSwordBeamEntity(EntityType type, World world) {
         super(type, world);
         this.setDamage(10F);
     }
@@ -56,7 +56,7 @@ public class MasterSwordBeamEntity extends AbstractArrowEntity {
         if (particleDistSq(x, y, z) < f * f) {
             this.world.addParticle(ParticleTypes.SNEEZE, x, y + 0.5D, z, d0, d1, d2);
         }
-        if(this.ticksExisted > lifespan) {
+        if (this.ticksExisted > lifespan) {
             remove();
             return;
         }

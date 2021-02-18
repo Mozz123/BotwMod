@@ -1,17 +1,13 @@
 package botwmod.setup;
 
 import botwmod.BotwMod;
-import botwmod.client.render.entity.layer.FrozenEffectLayer;
 import botwmod.entity.projectile.MasterSwordBeamEntity;
-import botwmod.registry.ModEffects;
 import botwmod.registry.ModEntities;
 import botwmod.registry.ModItems;
 import botwmod.registry.ModProfessions;
 import com.google.common.collect.Multimap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -22,19 +18,15 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.util.Hand;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.math.vector.Vector3f;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.RenderHandEvent;
-import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.common.BasicTrade;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -69,20 +61,20 @@ public class CommonEventHandler {
 
     public static void onRightClick(PlayerEntity living, ItemStack stack) {
         if (stack.getItem() == ModItems.MASTER_SWORD.get() || stack.getItem() == ModItems.MASTER_SWORD_AWAKENED.get()) {
-                Multimap<Attribute, AttributeModifier> dmg = stack.getAttributeModifiers(EquipmentSlotType.MAINHAND);
-                double totalDmg = 0;
-                for (AttributeModifier modifier : dmg.get(Attributes.ATTACK_DAMAGE)) {
-                    totalDmg += modifier.getAmount();
-                }
-                living.playSound(SoundEvents.ENTITY_ZOMBIE_INFECT, 1, 1);
-                MasterSwordBeamEntity shot = new MasterSwordBeamEntity(ModEntities.MASTER_SWORD.get(), living.world, living, totalDmg * 0.5F);
-                Vector3d vector3d = living.getLook(1.0F);
-                Vector3f vector3f = new Vector3f(vector3d);
-                shot.shoot(vector3f.getX(), vector3f.getY(), vector3f.getZ(), 1.0F, 0.5F);
-                living.world.addEntity(shot);
-                stack.damageItem(2, living, (entity) -> {
-                    entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
-                });
+            Multimap<Attribute, AttributeModifier> dmg = stack.getAttributeModifiers(EquipmentSlotType.MAINHAND);
+            double totalDmg = 0;
+            for (AttributeModifier modifier : dmg.get(Attributes.ATTACK_DAMAGE)) {
+                totalDmg += modifier.getAmount();
+            }
+            living.playSound(SoundEvents.ENTITY_ZOMBIE_INFECT, 1, 1);
+            MasterSwordBeamEntity shot = new MasterSwordBeamEntity(ModEntities.MASTER_SWORD.get(), living.world, living, totalDmg * 0.5F);
+            Vector3d vector3d = living.getLook(1.0F);
+            Vector3f vector3f = new Vector3f(vector3d);
+            shot.shoot(vector3f.getX(), vector3f.getY(), vector3f.getZ(), 1.0F, 0.5F);
+            living.world.addEntity(shot);
+            stack.damageItem(2, living, (entity) -> {
+                entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+            });
         }
     }
 
@@ -109,18 +101,15 @@ public class CommonEventHandler {
         ));
     }
 
-    private static VillagerTrades.ITrade sellItem(IItemProvider thing, int price, int maxTrades, int xp, float priceMultiplier)
-    {
+    private static VillagerTrades.ITrade sellItem(IItemProvider thing, int price, int maxTrades, int xp, float priceMultiplier) {
         return sellItem(new ItemStack(thing), price, maxTrades, xp, priceMultiplier);
     }
 
-    private static VillagerTrades.ITrade sellItem(ItemStack thing, int price, int maxTrades, int xp, float priceMultiplier)
-    {
+    private static VillagerTrades.ITrade sellItem(ItemStack thing, int price, int maxTrades, int xp, float priceMultiplier) {
         return new BasicTrade(new ItemStack(Items.EMERALD, price), thing, maxTrades, xp, priceMultiplier);
     }
 
-    private static VillagerTrades.ITrade buyItem(ItemStack thing, int reward, int maxTrades, int xp, float priceMultiplier)
-    {
+    private static VillagerTrades.ITrade buyItem(ItemStack thing, int reward, int maxTrades, int xp, float priceMultiplier) {
         return new BasicTrade(thing, new ItemStack(Items.EMERALD, reward), maxTrades, xp, priceMultiplier);
     }
 

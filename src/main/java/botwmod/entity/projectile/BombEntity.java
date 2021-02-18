@@ -40,7 +40,7 @@ public class BombEntity extends ProjectileItemEntity {
         if (!this.world.isRemote) {
 
             boolean flag = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.world, this.func_234616_v_());
-            this.world.createExplosion((Entity)null, this.getPosX(), this.getPosY(), this.getPosZ(), (float)this.explosionStrength, flag, flag ? Explosion.Mode.NONE : Explosion.Mode.NONE);
+            this.world.createExplosion((Entity) null, this.getPosX(), this.getPosY(), this.getPosZ(), (float) this.explosionStrength, flag, flag ? Explosion.Mode.NONE : Explosion.Mode.NONE);
             this.remove();
         }
     }
