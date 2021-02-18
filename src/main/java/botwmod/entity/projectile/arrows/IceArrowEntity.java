@@ -1,5 +1,6 @@
 package botwmod.entity.projectile.arrows;
 
+import botwmod.registry.ModEffects;
 import botwmod.registry.ModEntities;
 import botwmod.registry.ModItems;
 import net.minecraft.block.Blocks;
@@ -10,8 +11,11 @@ import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.IPacket;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
@@ -51,6 +55,13 @@ public class IceArrowEntity extends AbstractArrowEntity {
             this.world.setEntityState(this, (byte)0);
         }
 
+    }
+
+    @Override
+    protected void arrowHit(LivingEntity living) {
+        super.arrowHit(living);
+        EffectInstance effectinstance = new EffectInstance(ModEffects.FROZEN_EFFECT.get(), 10, 0);
+        living.addPotionEffect(effectinstance);
     }
 
     @Override
