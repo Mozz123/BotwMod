@@ -2,12 +2,14 @@ package botwmod.setup;
 
 import botwmod.BotwMod;
 import botwmod.entity.projectile.MasterSwordBeamEntity;
+import botwmod.registry.ModEffects;
 import botwmod.registry.ModEntities;
 import botwmod.registry.ModItems;
 import botwmod.registry.ModProfessions;
 import com.google.common.collect.Multimap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;

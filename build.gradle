@@ -23,6 +23,7 @@ repositories {
     }
 }
 
+apply plugin: 'idea'
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'

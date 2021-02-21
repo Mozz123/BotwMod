@@ -44,5 +44,7 @@ public class BOTWItemGroup extends ItemGroup {
 
     private void registerProjectiles(NonNullList<ItemStack> items) {
         items.add(new ItemStack(ModItems.BOMB.get()));
+        items.add(new ItemStack(ModItems.BOMB_ARROW.get()));
+        items.add(new ItemStack(ModItems.ICE_ARROW.get()));
     }
 }
