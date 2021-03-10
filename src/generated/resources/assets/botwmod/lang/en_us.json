@@ -19,5 +19,6 @@
   "item.botwmod.opal": "Opal",
   "item.botwmod.ruby": "Ruby",
   "item.botwmod.sapphire": "Sapphire",
-  "item.botwmod.topaz": "Topaz"
+  "item.botwmod.topaz": "Topaz",
+  "itemGroup.botwmod": "BOTW Mod"
 }

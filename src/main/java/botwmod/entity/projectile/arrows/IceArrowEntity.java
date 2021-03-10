@@ -51,7 +51,7 @@ public class IceArrowEntity extends AbstractArrowEntity {
     @Override
     protected void arrowHit(LivingEntity living) {
         super.arrowHit(living);
-        EffectInstance effectinstance = new EffectInstance(ModEffects.FROZEN_EFFECT.get(), 10, 0);
+        EffectInstance effectinstance = new EffectInstance(ModEffects.FROZEN_EFFECT.get(), 1000, 1);
         living.addPotionEffect(effectinstance);
     }
 
