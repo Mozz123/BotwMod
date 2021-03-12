@@ -45,7 +45,7 @@ public class MasterSwordBeamEntity extends AbstractArrowEntity {
     public void tick() {
         super.tick();
 
-        Entity thrower = func_234616_v_();
+        Entity thrower = getShooter();
         double d0 = 0;
         double d1 = 0.0D;
         double d2 = 0.01D;
@@ -65,14 +65,14 @@ public class MasterSwordBeamEntity extends AbstractArrowEntity {
             return;
         }
 
-        this.func_234617_x_();
+        this.updatePitchAndYaw();
     }
 
     @Override
     protected void onEntityHit(EntityRayTraceResult p_213868_1_) {
         super.onEntityHit(p_213868_1_);
         Entity entity = p_213868_1_.getEntity();
-        entity.attackEntityFrom(DamageSource.causeIndirectMagicDamage(this, this.func_234616_v_()), (float) this.getDamage());
+        entity.attackEntityFrom(DamageSource.causeIndirectMagicDamage(this, this.getShooter()), (float) this.getDamage());
     }
 
     @Override

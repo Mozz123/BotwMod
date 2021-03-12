@@ -3,23 +3,16 @@ package botwmod.client.render.entity.layer;
 import botwmod.BotwMod;
 import botwmod.registry.ModEffects;
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.platform.GlStateManager;
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
-import net.minecraft.client.renderer.entity.LivingRenderer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
-import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.ResourceLocation;
 
-import java.util.function.Predicate;
-
-public class FrozenEffectLayer <T extends LivingEntity> extends LayerRenderer<T, EntityModel<T>> {
+public class FrozenEffectLayer<T extends LivingEntity> extends LayerRenderer<T, EntityModel<T>> {
     private static final ResourceLocation FROZEN_TEXTURE = new ResourceLocation(BotwMod.MODID, "textures/entity/frozen_overlay.png");
     private final IEntityRenderer<T, EntityModel<T>> renderer;
 

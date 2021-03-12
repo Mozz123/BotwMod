@@ -24,7 +24,7 @@ public class BombItem extends Item {
         if (!worldIn.isRemote) {
             BombEntity bomb = new BombEntity(worldIn, playerIn);
             bomb.setItem(itemstack);
-            bomb.func_234612_a_(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
+            bomb.setDirectionAndMovement(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
             worldIn.addEntity(bomb);
         }
 

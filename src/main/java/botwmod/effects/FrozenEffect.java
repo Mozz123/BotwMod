@@ -1,11 +1,7 @@
 package botwmod.effects;
 
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectType;
-
-import java.util.UUID;
 
 public class FrozenEffect extends Effect {
 
