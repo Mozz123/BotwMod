@@ -15,7 +15,7 @@ import java.util.UUID;
 public class HeartContainerItem extends Item {
     private static final int MAX = 60;
     static final int COOLDOWN = 10;
-    private static final UUID healthModifierUuid = UUID.fromString("89597ef8-44bf-11eb-b378-0242ac130002");
+    public static final UUID healthModifierUuid = UUID.fromString("89597ef8-44bf-11eb-b378-0242ac130002");
 
     public HeartContainerItem(Item.Properties properties) {
         super(properties);
@@ -26,9 +26,9 @@ public class HeartContainerItem extends Item {
         if (player.getCooldownTracker().hasCooldown(this)) {
             return super.onItemRightClick(world, player, hand);
         }
-        player.getFoodStats().addStats(1, 4);
         ModifiableAttributeInstance healthAttribute = player.getAttribute(Attributes.MAX_HEALTH);
         if (healthAttribute.getValue() < MAX) {
+
             AttributeModifier oldHealthModifier = healthAttribute.getModifier(healthModifierUuid);
             double addedHealth = (oldHealthModifier == null) ? +4.0D : oldHealthModifier.getAmount() + 4.0D;
             healthAttribute.removeModifier(healthModifierUuid);
@@ -39,5 +39,4 @@ public class HeartContainerItem extends Item {
         }
         return super.onItemRightClick(world, player, hand);
     }
-
 }

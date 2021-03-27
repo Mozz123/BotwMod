@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "botwmod:bomb_arrow",
-    "botwmod:ice_arrow"
+    "botwmod:ice_arrow",
+    "botwmod:fire_arrow"
   ]
 }

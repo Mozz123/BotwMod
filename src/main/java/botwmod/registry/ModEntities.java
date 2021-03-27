@@ -4,6 +4,7 @@ import botwmod.BotwMod;
 import botwmod.entity.projectile.BombEntity;
 import botwmod.entity.projectile.MasterSwordBeamEntity;
 import botwmod.entity.projectile.arrows.BombArrowEntity;
+import botwmod.entity.projectile.arrows.FireArrowEntity;
 import botwmod.entity.projectile.arrows.IceArrowEntity;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.entity.EntityClassification;
@@ -24,6 +25,8 @@ public class ModEntities {
             .properties(prop -> prop.size(0.5F, 0.5F).setCustomClientFactory(BombArrowEntity::new)).register();
     public static final RegistryEntry<EntityType<IceArrowEntity>> ICE_ARROW = REGISTRATE.<IceArrowEntity>entity("ice_arrow", IceArrowEntity::new, EntityClassification.MISC)
             .properties(prop -> prop.size(0.5F, 0.5F).setCustomClientFactory(IceArrowEntity::new)).register();
+    public static final RegistryEntry<EntityType<FireArrowEntity>> FIRE_ARROW = REGISTRATE.<FireArrowEntity>entity("fire_arrow", FireArrowEntity::new, EntityClassification.MISC)
+            .properties(prop -> prop.size(0.5F, 0.5F).setCustomClientFactory(FireArrowEntity::new)).register();
 
     public static void load() {
         LOGGER.info("Entities Registered");

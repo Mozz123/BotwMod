@@ -5,6 +5,7 @@ import botwmod.items.BombItem;
 import botwmod.items.HeartContainerItem;
 import botwmod.items.MasterSwordItem;
 import botwmod.items.arrows.BombArrowItem;
+import botwmod.items.arrows.FireArrowItem;
 import botwmod.items.arrows.IceArrowItem;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.item.Item;
@@ -41,6 +42,7 @@ public class ModItems {
     public static final RegistryEntry<BombItem> BOMB = REGISTRATE.item("bomb", BombItem::new).defaultLang().properties(p -> p).register();
     public static final RegistryEntry<BombArrowItem> BOMB_ARROW = REGISTRATE.item("bomb_arrow", BombArrowItem::new).defaultLang().properties(p -> p).tag(ItemTags.ARROWS).register();
     public static final RegistryEntry<IceArrowItem> ICE_ARROW = REGISTRATE.item("ice_arrow", IceArrowItem::new).defaultLang().properties(p -> p).tag(ItemTags.ARROWS).register();
+    public static final RegistryEntry<FireArrowItem> FIRE_ARROW = REGISTRATE.item("fire_arrow", FireArrowItem::new).defaultLang().properties(p -> p).tag(ItemTags.ARROWS).register();
 
     public static void load() {
         LOGGER.info("Items registered");

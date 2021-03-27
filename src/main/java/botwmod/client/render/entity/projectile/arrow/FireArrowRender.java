@@ -8,10 +8,11 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class BombArrowRender extends ArrowRenderer {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("botwmod:textures/entity/bomb_arrow.png");
+public class FireArrowRender extends ArrowRenderer {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("botwmod:textures/entity/fire_arrow.png");
 
-    public BombArrowRender(EntityRendererManager render) {
+
+    public FireArrowRender(EntityRendererManager render) {
         super(render);
     }
 

@@ -2,12 +2,15 @@ package botwmod.registry;
 
 import botwmod.BotwMod;
 import botwmod.blocks.AmberOreBlock;
+import botwmod.blocks.FrozenSpikesBlock;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import net.minecraft.advancements.criterion.EnchantmentPredicate;
 import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.advancements.criterion.MinMaxBounds;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Item;
 import net.minecraft.loot.*;
@@ -29,6 +32,9 @@ public class ModBlocks {
     public static final RegistryEntry<AmberOreBlock> RUBY_ORE = registerGemstoneOre("ruby_ore", "Ruby Ore", ModItems.RUBY);
     public static final RegistryEntry<AmberOreBlock> SAPPHIRE_ORE = registerGemstoneOre("sapphire_ore", "Sapphire Ore", ModItems.SAPPHIRE);
     public static final RegistryEntry<AmberOreBlock> TOPAZ_ORE = registerGemstoneOre("topaz_ore", "Topaz Ore", ModItems.TOPAZ);
+
+    // Normal Blocks
+    public static final RegistryEntry<FrozenSpikesBlock> FROZEN_SPIKES = REGISTRATE.object("frozen_spikes").block(FrozenSpikesBlock::new).properties(prop -> prop.doesNotBlockMovement().zeroHardnessAndResistance().notSolid()).addLayer(() -> RenderType::getCutoutMipped).blockstate((ctx, provider) -> provider.simpleBlock(ctx.getEntry(), provider.models().cross(ctx.getName(), BotwMod.getLocation("block/" +ctx.getName())))).register();
 
     // Presets
     public static final RegistryEntry<AmberOreBlock> registerGemstoneOre(String id, String lang, NonNullSupplier<Item> gemstone) {

@@ -43,14 +43,6 @@ public class BombArrowEntity extends AbstractArrowEntity {
         return new ItemStack(ModItems.BOMB_ARROW.get());
     }
 
-    public void tick() {
-        super.tick();
-        if (!this.world.isRemote() && this.inGround && this.timeInGround != 0 && this.timeInGround >= 600) {
-            this.world.setEntityState(this, (byte) 0);
-        }
-
-    }
-
     @Override
     protected void onImpact(RayTraceResult result) {
         super.onImpact(result);

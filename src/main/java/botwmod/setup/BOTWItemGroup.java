@@ -1,4 +1,4 @@
-package botwmod;
+package botwmod.setup;
 
 import botwmod.registry.ModItems;
 import net.minecraft.item.ItemGroup;
