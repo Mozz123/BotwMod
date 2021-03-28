@@ -55,6 +55,12 @@ public class FireArrowEntity extends AbstractArrowEntity {
     }
 
     @Override
+    protected void arrowHit(LivingEntity living) {
+        super.arrowHit(living);
+        living.setFire(600);
+    }
+
+    @Override
     protected void onImpact(RayTraceResult result) {
         super.onImpact(result);
         if (!this.world.isRemote) {

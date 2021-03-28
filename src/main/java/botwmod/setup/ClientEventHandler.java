@@ -7,6 +7,7 @@ import botwmod.client.render.entity.projectile.MasterSwordBeamEntityRender;
 import botwmod.client.render.entity.projectile.arrow.BombArrowRender;
 import botwmod.client.render.entity.projectile.arrow.FireArrowRender;
 import botwmod.client.render.entity.projectile.arrow.IceArrowRender;
+import botwmod.client.render.entity.projectile.arrow.ShockArrowRender;
 import botwmod.registry.ModBlocks;
 import botwmod.registry.ModEntities;
 import net.minecraft.client.Minecraft;
@@ -37,6 +38,7 @@ public class ClientEventHandler {
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.BOMB_ARROW.get(), manager -> new BombArrowRender(manager));
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.ICE_ARROW.get(), manager -> new IceArrowRender(manager));
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.FIRE_ARROW.get(), manager -> new FireArrowRender(manager));
+        RenderingRegistry.registerEntityRenderingHandler(ModEntities.SHOCK_ARROW.get(), manager -> new ShockArrowRender(manager));
         for (Map.Entry<EntityType<?>, EntityRenderer<?>> entry : Minecraft.getInstance().getRenderManager().renderers.entrySet()) {
             EntityRenderer render = entry.getValue();
             if (render instanceof LivingRenderer) {

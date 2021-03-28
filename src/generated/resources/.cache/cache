@@ -4,8 +4,8 @@
 1d229192c0d7f138cba9d9b7e742960364d95836 assets/botwmod/blockstates/ruby_ore.json
 72a7639bd5743d14f80b4992eec5778c6cf8e7b8 assets/botwmod/blockstates/sapphire_ore.json
 fc82de991a638758c43d9ab4925626127aa3e155 assets/botwmod/blockstates/topaz_ore.json
-2dc1fdbd2a2e68da4a592a6776247a9d80ade296 assets/botwmod/lang/en_ud.json
-ba93f07ea8f52ad69d2dd983a0dfc394b24257cb assets/botwmod/lang/en_us.json
+11cbaa1247338aff830bb860c63d4be3a5604352 assets/botwmod/lang/en_ud.json
+0ba1b53a0ed5fd3a821c8c80defd38defdfddcca assets/botwmod/lang/en_us.json
 83c8fd2f7088646b2492032ec5ecd28cd03a1fe4 assets/botwmod/models/block/amber_ore.json
 9170677852a6a53e2f0bd4a02a730b1fa392ace8 assets/botwmod/models/block/frozen_spikes.json
 14b14398024582470938507b51bfef83ca605c7f assets/botwmod/models/block/opal_ore.json
@@ -28,6 +28,7 @@ a2fca4d32dd0315bb59b4b9628bef21d424dc1b2 assets/botwmod/models/item/master_sword
 ea95a6d8ab7e97f8e820e840762d71808dff5d0b assets/botwmod/models/item/ruby_ore.json
 436ef050344240b4a20083552755479c08dfae8f assets/botwmod/models/item/sapphire.json
 990c698edab084834db3e53619c7e61df7afda45 assets/botwmod/models/item/sapphire_ore.json
+52bec0befb296ef711460def3801ad618469d231 assets/botwmod/models/item/shock_arrow.json
 421f891a8e82743e436625245a6b18606e85d73c assets/botwmod/models/item/topaz.json
 3a4b7c118d4c97350bf8787f2a31961d4b4eff72 assets/botwmod/models/item/topaz_ore.json
 9095fc2b0bc955a726200e514aa620046e2b95cc data/botwmod/loot_tables/blocks/amber_ore.json
@@ -36,4 +37,4 @@ ea95a6d8ab7e97f8e820e840762d71808dff5d0b assets/botwmod/models/item/ruby_ore.jso
 163c1f98e1e6dd9ed45a51daead216c1d6418bd1 data/botwmod/loot_tables/blocks/ruby_ore.json
 36b77cfbc51b6d98c2b1223d38ee2e4efbbebfa5 data/botwmod/loot_tables/blocks/sapphire_ore.json
 3f2d08182f5a38a70b465321f9a5d4e3beda94d5 data/botwmod/loot_tables/blocks/topaz_ore.json
-9cdc3c10365ba7cb930f4f9f3d90d54bf8187cdb data/minecraft/tags/items/arrows.json
+bdedaa5275912a31406a3e152a2890d6faccfd52 data/minecraft/tags/items/arrows.json

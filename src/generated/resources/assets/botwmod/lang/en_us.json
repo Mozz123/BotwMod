@@ -9,6 +9,7 @@
   "entity.botwmod.bomb_arrow": "Bomb Arrow",
   "entity.botwmod.fire_arrow": "Fire Arrow",
   "entity.botwmod.ice_arrow": "Ice Arrow",
+  "entity.botwmod.lightning_arrow": "Lightning Arrow",
   "entity.botwmod.master_sword": "Master Sword",
   "item.botwmod.amber": "Amber",
   "item.botwmod.beam_attack": "Beam Attack",
@@ -22,5 +23,6 @@
   "item.botwmod.opal": "Opal",
   "item.botwmod.ruby": "Ruby",
   "item.botwmod.sapphire": "Sapphire",
+  "item.botwmod.shock_arrow": "Shock Arrow",
   "item.botwmod.topaz": "Topaz"
 }

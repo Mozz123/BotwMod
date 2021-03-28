@@ -6,6 +6,7 @@ import botwmod.entity.projectile.MasterSwordBeamEntity;
 import botwmod.entity.projectile.arrows.BombArrowEntity;
 import botwmod.entity.projectile.arrows.FireArrowEntity;
 import botwmod.entity.projectile.arrows.IceArrowEntity;
+import botwmod.entity.projectile.arrows.ShockArrowEntity;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -27,6 +28,8 @@ public class ModEntities {
             .properties(prop -> prop.size(0.5F, 0.5F).setCustomClientFactory(IceArrowEntity::new)).register();
     public static final RegistryEntry<EntityType<FireArrowEntity>> FIRE_ARROW = REGISTRATE.<FireArrowEntity>entity("fire_arrow", FireArrowEntity::new, EntityClassification.MISC)
             .properties(prop -> prop.size(0.5F, 0.5F).setCustomClientFactory(FireArrowEntity::new)).register();
+    public static final RegistryEntry<EntityType<ShockArrowEntity>> SHOCK_ARROW = REGISTRATE.<ShockArrowEntity>entity("lightning_arrow", ShockArrowEntity::new, EntityClassification.MISC)
+            .properties(prop -> prop.size(0.5F, 0.5F).setCustomClientFactory(ShockArrowEntity::new)).register();
 
     public static void load() {
         LOGGER.info("Entities Registered");
