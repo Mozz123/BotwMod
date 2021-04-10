@@ -31,11 +31,7 @@ public class BOTWItemGroup extends ItemGroup {
     }
 
     private void registerValuables(NonNullList<ItemStack> items) {
-        items.add(new ItemStack(ModItems.AMBER.get()));
-        items.add(new ItemStack(ModItems.OPAL.get()));
-        items.add(new ItemStack(ModItems.RUBY.get()));
         items.add(new ItemStack(ModItems.SAPPHIRE.get()));
-        items.add(new ItemStack(ModItems.TOPAZ.get()));
     }
 
     private void registerKeyItems(NonNullList<ItemStack> items) {

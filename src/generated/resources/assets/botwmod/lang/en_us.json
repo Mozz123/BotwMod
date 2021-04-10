@@ -1,17 +1,14 @@
 {
-  "block.botwmod.amber_ore": "Amber Ore",
   "block.botwmod.frozen_spikes": "Frozen Spikes",
-  "block.botwmod.opal_ore": "Opal Ore",
-  "block.botwmod.ruby_ore": "Ruby Ore",
+  "block.botwmod.master_sword_pedestal": "Master Sword Pedestal",
   "block.botwmod.sapphire_ore": "Sapphire Ore",
-  "block.botwmod.topaz_ore": "Topaz Ore",
+  "block.botwmod.sword_pedestal": "Sword Pedestal",
   "entity.botwmod.bomb": "Bomb",
   "entity.botwmod.bomb_arrow": "Bomb Arrow",
   "entity.botwmod.fire_arrow": "Fire Arrow",
   "entity.botwmod.ice_arrow": "Ice Arrow",
   "entity.botwmod.lightning_arrow": "Lightning Arrow",
   "entity.botwmod.master_sword": "Master Sword",
-  "item.botwmod.amber": "Amber",
   "item.botwmod.beam_attack": "Beam Attack",
   "item.botwmod.bomb": "Bomb",
   "item.botwmod.bomb_arrow": "Bomb Arrow",
@@ -20,9 +17,6 @@
   "item.botwmod.ice_arrow": "Ice Arrow",
   "item.botwmod.master_sword": "Master Sword",
   "item.botwmod.master_sword_awakened": "Master Sword Awakened",
-  "item.botwmod.opal": "Opal",
-  "item.botwmod.ruby": "Ruby",
   "item.botwmod.sapphire": "Sapphire",
-  "item.botwmod.shock_arrow": "Shock Arrow",
-  "item.botwmod.topaz": "Topaz"
+  "item.botwmod.shock_arrow": "Shock Arrow"
 }

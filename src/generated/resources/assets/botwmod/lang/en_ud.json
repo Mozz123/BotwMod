@@ -1,17 +1,14 @@
 {
-  "block.botwmod.amber_ore": "\u01DD\u0279O \u0279\u01DDq\u026F\u2C6F",
   "block.botwmod.frozen_spikes": "s\u01DD\u029E\u0131dS u\u01DDzo\u0279\u2132",
-  "block.botwmod.opal_ore": "\u01DD\u0279O \u05DF\u0250dO",
-  "block.botwmod.ruby_ore": "\u01DD\u0279O \u028Eqn\u1D1A",
+  "block.botwmod.master_sword_pedestal": "\u05DF\u0250\u0287s\u01DDp\u01DD\u0500 p\u0279o\u028DS \u0279\u01DD\u0287s\u0250W",
   "block.botwmod.sapphire_ore": "\u01DD\u0279O \u01DD\u0279\u0131\u0265dd\u0250S",
-  "block.botwmod.topaz_ore": "\u01DD\u0279O z\u0250do\u27D8",
+  "block.botwmod.sword_pedestal": "\u05DF\u0250\u0287s\u01DDp\u01DD\u0500 p\u0279o\u028DS",
   "entity.botwmod.bomb": "q\u026Fo\u15FA",
   "entity.botwmod.bomb_arrow": "\u028Do\u0279\u0279\u2C6F q\u026Fo\u15FA",
   "entity.botwmod.fire_arrow": "\u028Do\u0279\u0279\u2C6F \u01DD\u0279\u0131\u2132",
   "entity.botwmod.ice_arrow": "\u028Do\u0279\u0279\u2C6F \u01DD\u0254I",
   "entity.botwmod.lightning_arrow": "\u028Do\u0279\u0279\u2C6F bu\u0131u\u0287\u0265b\u0131\uA780",
   "entity.botwmod.master_sword": "p\u0279o\u028DS \u0279\u01DD\u0287s\u0250W",
-  "item.botwmod.amber": "\u0279\u01DDq\u026F\u2C6F",
   "item.botwmod.beam_attack": "\u029E\u0254\u0250\u0287\u0287\u2C6F \u026F\u0250\u01DD\u15FA",
   "item.botwmod.bomb": "q\u026Fo\u15FA",
   "item.botwmod.bomb_arrow": "\u028Do\u0279\u0279\u2C6F q\u026Fo\u15FA",
@@ -20,9 +17,6 @@
   "item.botwmod.ice_arrow": "\u028Do\u0279\u0279\u2C6F \u01DD\u0254I",
   "item.botwmod.master_sword": "p\u0279o\u028DS \u0279\u01DD\u0287s\u0250W",
   "item.botwmod.master_sword_awakened": "p\u01DDu\u01DD\u029E\u0250\u028D\u2C6F p\u0279o\u028DS \u0279\u01DD\u0287s\u0250W",
-  "item.botwmod.opal": "\u05DF\u0250dO",
-  "item.botwmod.ruby": "\u028Eqn\u1D1A",
   "item.botwmod.sapphire": "\u01DD\u0279\u0131\u0265dd\u0250S",
-  "item.botwmod.shock_arrow": "\u028Do\u0279\u0279\u2C6F \u029E\u0254o\u0265S",
-  "item.botwmod.topaz": "z\u0250do\u27D8"
+  "item.botwmod.shock_arrow": "\u028Do\u0279\u0279\u2C6F \u029E\u0254o\u0265S"
 }

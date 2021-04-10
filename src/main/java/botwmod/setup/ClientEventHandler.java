@@ -8,8 +8,10 @@ import botwmod.client.render.entity.projectile.arrow.BombArrowRender;
 import botwmod.client.render.entity.projectile.arrow.FireArrowRender;
 import botwmod.client.render.entity.projectile.arrow.IceArrowRender;
 import botwmod.client.render.entity.projectile.arrow.ShockArrowRender;
+import botwmod.client.render.tile.MasterSwordPedestalTESR;
 import botwmod.registry.ModBlocks;
 import botwmod.registry.ModEntities;
+import botwmod.registry.ModTiles;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -20,6 +22,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -39,16 +44,12 @@ public class ClientEventHandler {
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.ICE_ARROW.get(), manager -> new IceArrowRender(manager));
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.FIRE_ARROW.get(), manager -> new FireArrowRender(manager));
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.SHOCK_ARROW.get(), manager -> new ShockArrowRender(manager));
+        MasterSwordPedestalTESR.register();
         for (Map.Entry<EntityType<?>, EntityRenderer<?>> entry : Minecraft.getInstance().getRenderManager().renderers.entrySet()) {
             EntityRenderer render = entry.getValue();
             if (render instanceof LivingRenderer) {
                 ((LivingRenderer) render).addLayer(new FrozenEffectLayer((LivingRenderer) render));
             }
         }
-        for (Map.Entry<String, PlayerRenderer> entry : Minecraft.getInstance().getRenderManager().getSkinMap().entrySet()) {
-            PlayerRenderer render = entry.getValue();
-            render.addLayer(new FrozenEffectLayer(render));
-        }
-
     }
 }
