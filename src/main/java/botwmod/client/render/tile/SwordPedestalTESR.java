@@ -40,8 +40,4 @@ public class SwordPedestalTESR  extends TileEntityRenderer<SwordPedestalTile> {
     public boolean isGlobalRenderer(SwordPedestalTile tileEntity) {
         return true;
     }
-
-    public static void register() {
-
-    }
 }

@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
+import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -15,12 +16,23 @@ import net.minecraftforge.common.util.Constants;
 
 import javax.annotation.Nullable;
 
-public class SwordPedestalTile extends TileEntity {
+public class SwordPedestalTile extends TileEntity implements ITickableTileEntity {
     private ItemStack swordInPedestal;
+    public boolean startMasterSwordAnimation;
+    public int timeSinceAnimationStart;
 
     public SwordPedestalTile() {
         super(ModTiles.SWORD_PEDESTAL.get());
         this.swordInPedestal = ItemStack.EMPTY;
+        this.startMasterSwordAnimation = false;
+        this.timeSinceAnimationStart = 0;
+    }
+
+    @Override
+    public void tick() {
+        if (startMasterSwordAnimation) {
+
+        }
     }
 
     @Override

@@ -16,6 +16,10 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.shapes.IBooleanFunction;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
@@ -43,10 +47,12 @@ public class SwordPedestalBlock extends Block {
             SwordPedestalTile pedestalTileEntity = (SwordPedestalTile) tileEntity;
             if (player.isSneaking()) {
                 if (player.getActiveHand() == Hand.MAIN_HAND && player.getHeldItemMainhand().isEmpty()) {
-                    final ItemStack toDrop = pedestalTileEntity.getSwordInPedestal().copy();
-                    if (toDrop != ModItems.MASTER_SWORD.get().getDefaultInstance()) {
+                    final ItemStack swordInPedestal = pedestalTileEntity.getSwordInPedestal();
+                    if (pedestalTileEntity.getSwordInPedestal().getItem() == ModItems.MASTER_SWORD.get()) {
+                        pedestalTileEntity.startMasterSwordAnimation = true;
+                    } else {
                         pedestalTileEntity.setSwordInPedestal(ItemStack.EMPTY);
-                        player.dropItem(toDrop, false);
+                        player.dropItem(swordInPedestal, false);
                     }
                 }
             } else {
@@ -56,8 +62,8 @@ public class SwordPedestalBlock extends Block {
                 if (hand == Hand.MAIN_HAND) {
                     boolean isDisplayEmpty = pedestalTileEntity.getSwordInPedestal().isEmpty();
                     if (isDisplayEmpty && isSword) {
-                        ItemStack copy = stack.copy();
-                        pedestalTileEntity.setSwordInPedestal(copy);
+                        ItemStack swordStack = stack.copy();
+                        pedestalTileEntity.setSwordInPedestal(swordStack);
                         stack.shrink(1);
                         return ActionResultType.SUCCESS;
                     }

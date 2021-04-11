@@ -102,7 +102,7 @@ public class CommonEventHandler {
                     Vector3f vector3f = new Vector3f(vector3d);
                     shot.shoot(vector3f.getX(), vector3f.getY(), vector3f.getZ(), 1.0F, 0.5F);
                     living.world.addEntity(shot);
-                    stack.damageItem(2, living, (entity) -> {
+                    stack.damageItem(1, living, (entity) -> {
                         entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
                     });
                 }

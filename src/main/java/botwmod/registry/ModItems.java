@@ -37,12 +37,12 @@ public class ModItems {
 
     // Swords
     public static final RegistryEntry<MasterSwordItem> MASTER_SWORD = REGISTRATE
-            .item("master_sword", prop -> new MasterSwordItem(ModToolTiers.MASTER_SWORD, 7, -2.4f, prop))
+            .item("master_sword", prop -> new MasterSwordItem(ModToolTiers.MASTER_SWORD, 2, -2.4f, prop))
             .model((ctx, provider) -> provider.handheld(ctx::getEntry))
             .register();
 
     public static final RegistryEntry<MasterSwordItem> MASTER_SWORD_AWAKENED = REGISTRATE
-            .item("master_sword_awakened", prop -> new MasterSwordItem(ModToolTiers.MASTER_SWORD_AWAKENED, 14, -2.4f, prop))
+            .item("master_sword_awakened", prop -> new MasterSwordItem(ModToolTiers.MASTER_SWORD_AWAKENED, 4, -2.4f, prop))
             .model((ctx, provider) -> provider.handheld(ctx::getEntry))
             .register();
 
