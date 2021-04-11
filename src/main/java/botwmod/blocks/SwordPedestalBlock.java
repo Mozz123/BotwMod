@@ -1,6 +1,6 @@
 package botwmod.blocks;
 
-import botwmod.blocks.tile.MasterSwordPedestalTile;
+import botwmod.blocks.tile.SwordPedestalTile;
 import botwmod.registry.ModItems;
 import botwmod.registry.ModTiles;
 import net.minecraft.block.AbstractBlock;
@@ -16,24 +16,20 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.IBooleanFunction;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class MasterSwordPedestalBlock extends Block {
-    public MasterSwordPedestalBlock(AbstractBlock.Properties properties) {
+public class SwordPedestalBlock extends Block {
+    public SwordPedestalBlock(AbstractBlock.Properties properties) {
         super(properties);
     }
 
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
         TileEntity tileEntity = worldIn.getTileEntity(pos);
-        if (tileEntity instanceof MasterSwordPedestalTile) {
+        if (tileEntity instanceof SwordPedestalTile) {
             tileEntity.validate();
             worldIn.setTileEntity(pos, tileEntity);
         }
@@ -43,8 +39,8 @@ public class MasterSwordPedestalBlock extends Block {
     @Override
     public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
         TileEntity tileEntity = world.getTileEntity(pos);
-        if (!world.isRemote && tileEntity instanceof MasterSwordPedestalTile) {
-            MasterSwordPedestalTile pedestalTileEntity = (MasterSwordPedestalTile) tileEntity;
+        if (!world.isRemote && tileEntity instanceof SwordPedestalTile) {
+            SwordPedestalTile pedestalTileEntity = (SwordPedestalTile) tileEntity;
             if (player.isSneaking()) {
                 if (player.getActiveHand() == Hand.MAIN_HAND && player.getHeldItemMainhand().isEmpty()) {
                     final ItemStack toDrop = pedestalTileEntity.getSwordInPedestal().copy();
@@ -76,9 +72,9 @@ public class MasterSwordPedestalBlock extends Block {
     public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
         if (state.getBlock() != newState.getBlock()) {
             TileEntity tileentity = worldIn.getTileEntity(pos);
-            if (tileentity instanceof MasterSwordPedestalTile) {
+            if (tileentity instanceof SwordPedestalTile) {
                 InventoryHelper.spawnItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(),
-                        ((MasterSwordPedestalTile) tileentity).getSwordInPedestal().copy()
+                        ((SwordPedestalTile) tileentity).getSwordInPedestal().copy()
                 );
             }
             super.onReplaced(state, worldIn, pos, newState, isMoving);
@@ -94,6 +90,6 @@ public class MasterSwordPedestalBlock extends Block {
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return ModTiles.MASTER_SWORD_PEDESTAL.create();
+        return ModTiles.SWORD_PEDESTAL.create();
     }
 }

@@ -1,5 +1,6 @@
 package botwmod.setup;
 
+import botwmod.registry.ModBlocks;
 import botwmod.registry.ModItems;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -44,5 +45,10 @@ public class BOTWItemGroup extends ItemGroup {
         items.add(new ItemStack(ModItems.ICE_ARROW.get()));
         items.add(new ItemStack(ModItems.FIRE_ARROW.get()));
         items.add(new ItemStack(ModItems.SHOCK_ARROW.get()));
+    }
+
+    private void registerBlocks(NonNullList<ItemStack> items) {
+        items.add(new ItemStack(ModBlocks.SWORD_PEDESTAL.get().asItem()));
+        items.add(new ItemStack(ModBlocks.SAPPHIRE_ORE.get().asItem()));
     }
 }

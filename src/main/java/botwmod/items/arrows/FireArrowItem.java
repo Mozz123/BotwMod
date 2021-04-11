@@ -1,7 +1,6 @@
 package botwmod.items.arrows;
 
 import botwmod.entity.projectile.arrows.FireArrowEntity;
-import botwmod.entity.projectile.arrows.IceArrowEntity;
 import botwmod.registry.ModEntities;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;

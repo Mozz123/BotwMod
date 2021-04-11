@@ -1,7 +1,5 @@
 package botwmod.entity.projectile.arrows;
 
-import botwmod.registry.ModBlocks;
-import botwmod.registry.ModEffects;
 import botwmod.registry.ModEntities;
 import botwmod.registry.ModItems;
 import net.minecraft.block.AbstractBlock;
@@ -9,15 +7,11 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.TNTBlock;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.IPacket;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.RayTraceResult;

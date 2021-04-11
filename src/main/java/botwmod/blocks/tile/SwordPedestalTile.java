@@ -1,7 +1,5 @@
 package botwmod.blocks.tile;
 
-import botwmod.blocks.MasterSwordPedestalBlock;
-import botwmod.registry.ModBlocks;
 import botwmod.registry.ModTiles;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
@@ -17,11 +15,11 @@ import net.minecraftforge.common.util.Constants;
 
 import javax.annotation.Nullable;
 
-public class MasterSwordPedestalTile extends TileEntity {
+public class SwordPedestalTile extends TileEntity {
     private ItemStack swordInPedestal;
 
-    public MasterSwordPedestalTile() {
-        super(ModTiles.MASTER_SWORD_PEDESTAL.get());
+    public SwordPedestalTile() {
+        super(ModTiles.SWORD_PEDESTAL.get());
         this.swordInPedestal = ItemStack.EMPTY;
     }
 

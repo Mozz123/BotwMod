@@ -8,30 +8,19 @@ import botwmod.client.render.entity.projectile.arrow.BombArrowRender;
 import botwmod.client.render.entity.projectile.arrow.FireArrowRender;
 import botwmod.client.render.entity.projectile.arrow.IceArrowRender;
 import botwmod.client.render.entity.projectile.arrow.ShockArrowRender;
-import botwmod.client.render.tile.MasterSwordPedestalTESR;
-import botwmod.registry.ModBlocks;
+import botwmod.client.render.tile.SwordPedestalTESR;
 import botwmod.registry.ModEntities;
 import botwmod.registry.ModTiles;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.LivingRenderer;
-import net.minecraft.client.renderer.entity.PlayerRenderer;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
-import java.lang.reflect.Field;
 import java.util.Map;
 
 @Mod.EventBusSubscriber(modid = BotwMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -44,7 +33,7 @@ public class ClientEventHandler {
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.ICE_ARROW.get(), manager -> new IceArrowRender(manager));
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.FIRE_ARROW.get(), manager -> new FireArrowRender(manager));
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.SHOCK_ARROW.get(), manager -> new ShockArrowRender(manager));
-        MasterSwordPedestalTESR.register();
+        ClientRegistry.bindTileEntityRenderer(ModTiles.SWORD_PEDESTAL.get(), SwordPedestalTESR::new);
         for (Map.Entry<EntityType<?>, EntityRenderer<?>> entry : Minecraft.getInstance().getRenderManager().renderers.entrySet()) {
             EntityRenderer render = entry.getValue();
             if (render instanceof LivingRenderer) {

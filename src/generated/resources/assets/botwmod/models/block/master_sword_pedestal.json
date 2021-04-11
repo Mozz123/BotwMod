@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "botwmod:block/master_sword_pedestal"
-  }
-}
