@@ -9,8 +9,11 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
+import net.minecraft.state.BooleanProperty;
+import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -26,8 +29,11 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 public class SwordPedestalBlock extends Block {
+    public static final BooleanProperty HAS_MASTER_SWORD = BooleanProperty.create("has_master_sword");
+
     public SwordPedestalBlock(AbstractBlock.Properties properties) {
         super(properties);
+        this.setDefaultState(this.stateContainer.getBaseState().with(HAS_MASTER_SWORD, Boolean.FALSE));
     }
 
     @Override
@@ -49,7 +55,7 @@ public class SwordPedestalBlock extends Block {
                 if (player.getActiveHand() == Hand.MAIN_HAND && player.getHeldItemMainhand().isEmpty()) {
                     final ItemStack swordInPedestal = pedestalTileEntity.getSwordInPedestal();
                     if (pedestalTileEntity.getSwordInPedestal().getItem() == ModItems.MASTER_SWORD.get()) {
-                        pedestalTileEntity.startMasterSwordAnimation = true;
+                        world.setBlockState(pos, state.with(HAS_MASTER_SWORD, !state.get(HAS_MASTER_SWORD)), 3);
                     } else {
                         pedestalTileEntity.setSwordInPedestal(ItemStack.EMPTY);
                         player.dropItem(swordInPedestal, false);
@@ -87,6 +93,15 @@ public class SwordPedestalBlock extends Block {
         }
     }
 
+    @Override
+    public BlockState getStateForPlacement(BlockItemUseContext context) {
+        return this.getDefaultState().with(HAS_MASTER_SWORD, Boolean.FALSE);
+    }
+
+    @Override
+    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+        builder.add(HAS_MASTER_SWORD);
+    }
 
     @Override
     public boolean hasTileEntity(BlockState state) {

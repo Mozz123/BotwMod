@@ -1,5 +1,7 @@
 package botwmod.blocks.tile;
 
+import botwmod.blocks.SwordPedestalBlock;
+import botwmod.registry.ModBlocks;
 import botwmod.registry.ModTiles;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
@@ -9,6 +11,7 @@ import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -18,20 +21,25 @@ import javax.annotation.Nullable;
 
 public class SwordPedestalTile extends TileEntity implements ITickableTileEntity {
     private ItemStack swordInPedestal;
-    public boolean startMasterSwordAnimation;
-    public int timeSinceAnimationStart;
+    private float animationProgress;
+    private float animationProgressOld;
 
     public SwordPedestalTile() {
         super(ModTiles.SWORD_PEDESTAL.get());
         this.swordInPedestal = ItemStack.EMPTY;
-        this.startMasterSwordAnimation = false;
-        this.timeSinceAnimationStart = 0;
     }
 
     @Override
     public void tick() {
-        if (startMasterSwordAnimation) {
-
+        this.animationProgressOld = this.animationProgress;
+        if (!this.world.isRemote()) {
+            if (this.getBlockState().get(SwordPedestalBlock.HAS_MASTER_SWORD)) {
+                this.animationProgress += 0.1F;
+            }
+            if (animationProgress >= 80) {
+                this.world.setBlockState(this.pos, ModBlocks.SWORD_PEDESTAL.get().getDefaultState());
+                animationProgress = 0;
+            }
         }
     }
 
@@ -109,10 +117,18 @@ public class SwordPedestalTile extends TileEntity implements ITickableTileEntity
     public ItemStack getSwordInPedestal() {
         return this.swordInPedestal;
     }
-
+    
     public void setSwordInPedestal(ItemStack stack) {
         this.swordInPedestal = stack;
         this.markDirty();
         this.world.notifyBlockUpdate(this.getPos(), this.getBlockState(), this.getBlockState(), 3);
+    }
+
+    public float getAnimationProgress() {
+        return this.animationProgress;
+    }
+
+    public float getAnimationProgress(float progress) {
+        return MathHelper.lerp(progress, this.animationProgressOld, this.animationProgress);
     }
 }

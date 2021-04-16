@@ -46,16 +46,6 @@ public class MasterSwordBeamEntity extends AbstractArrowEntity {
         super.tick();
 
         Entity thrower = getShooter();
-        double d0 = 0;
-        double d1 = 0.0D;
-        double d2 = 0.01D;
-        double x = this.getPosX() + (double) (this.rand.nextFloat() * this.getWidth() * 2.0F) - (double) this.getWidth();
-        double y = this.getPosY() + (double) (this.rand.nextFloat() * this.getHeight()) - (double) this.getHeight();
-        double z = this.getPosZ() + (double) (this.rand.nextFloat() * this.getWidth() * 2.0F) - (double) this.getWidth();
-        float f = (this.getWidth() + this.getHeight() + this.getWidth()) * 0.333F + 0.5F;
-        if (particleDistSq(x, y, z) < f * f) {
-            this.world.addParticle(ParticleTypes.SNEEZE, x, y + 0.5D, z, d0, d1, d2);
-        }
         if (this.ticksExisted > lifespan) {
             remove();
             return;
