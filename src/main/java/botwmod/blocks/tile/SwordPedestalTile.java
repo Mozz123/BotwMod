@@ -31,14 +31,19 @@ public class SwordPedestalTile extends TileEntity implements ITickableTileEntity
 
     @Override
     public void tick() {
+        this.updateMasterSwordAnimation();
+    }
+
+    protected void updateMasterSwordAnimation() {
         this.animationProgressOld = this.animationProgress;
-        if (!this.world.isRemote()) {
-            if (this.getBlockState().get(SwordPedestalBlock.HAS_MASTER_SWORD)) {
-                this.animationProgress += 0.1F;
-            }
-            if (animationProgress >= 80) {
+        if (this.getBlockState() == ModBlocks.SWORD_PEDESTAL.get().getDefaultState()) {
+            this.animationProgress = 0.0F;
+        }
+        if (this.getBlockState().get(SwordPedestalBlock.HAS_MASTER_SWORD)) {
+            this.animationProgress += 0.1F;
+            if (this.animationProgress >= 1.0F) {
+                this.animationProgress = 0.0F;
                 this.world.setBlockState(this.pos, ModBlocks.SWORD_PEDESTAL.get().getDefaultState());
-                animationProgress = 0;
             }
         }
     }
@@ -122,10 +127,6 @@ public class SwordPedestalTile extends TileEntity implements ITickableTileEntity
         this.swordInPedestal = stack;
         this.markDirty();
         this.world.notifyBlockUpdate(this.getPos(), this.getBlockState(), this.getBlockState(), 3);
-    }
-
-    public float getAnimationProgress() {
-        return this.animationProgress;
     }
 
     public float getAnimationProgress(float progress) {
