@@ -29,11 +29,11 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 public class SwordPedestalBlock extends Block {
-    public static final BooleanProperty HAS_MASTER_SWORD = BooleanProperty.create("has_master_sword");
+    public static final BooleanProperty SHOULD_ANIMATION_START = BooleanProperty.create("should_animation_start");
 
     public SwordPedestalBlock(AbstractBlock.Properties properties) {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(HAS_MASTER_SWORD, Boolean.FALSE));
+        this.setDefaultState(this.stateContainer.getBaseState().with(SHOULD_ANIMATION_START, Boolean.FALSE));
     }
 
     @Override
@@ -55,7 +55,7 @@ public class SwordPedestalBlock extends Block {
                 if (player.getActiveHand() == Hand.MAIN_HAND && player.getHeldItemMainhand().isEmpty()) {
                     final ItemStack swordInPedestal = pedestalTileEntity.getSwordInPedestal();
                     if (pedestalTileEntity.getSwordInPedestal().getItem() == ModItems.MASTER_SWORD.get()) {
-                        world.setBlockState(pos, state.with(HAS_MASTER_SWORD, !state.get(HAS_MASTER_SWORD)), 3);
+                        world.setBlockState(pos, state.with(SHOULD_ANIMATION_START, !state.get(SHOULD_ANIMATION_START)), 3);
                     } else {
                         pedestalTileEntity.setSwordInPedestal(ItemStack.EMPTY);
                         player.dropItem(swordInPedestal, false);
@@ -95,12 +95,12 @@ public class SwordPedestalBlock extends Block {
 
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return this.getDefaultState().with(HAS_MASTER_SWORD, Boolean.FALSE);
+        return this.getDefaultState().with(SHOULD_ANIMATION_START, Boolean.FALSE);
     }
 
     @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(HAS_MASTER_SWORD);
+        builder.add(SHOULD_ANIMATION_START);
     }
 
     @Override

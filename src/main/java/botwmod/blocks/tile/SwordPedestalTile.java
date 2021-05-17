@@ -21,29 +21,32 @@ import javax.annotation.Nullable;
 
 public class SwordPedestalTile extends TileEntity implements ITickableTileEntity {
     private ItemStack swordInPedestal;
-    private float animationProgress;
-    private float animationProgressOld;
+    public int animationTicks;
+    public int stillTicks;
 
     public SwordPedestalTile() {
         super(ModTiles.SWORD_PEDESTAL.get());
         this.swordInPedestal = ItemStack.EMPTY;
+        this.animationTicks = 0;
+        this.stillTicks = 0;
     }
 
     @Override
     public void tick() {
-        this.updateMasterSwordAnimation();
-    }
-
-    protected void updateMasterSwordAnimation() {
-        this.animationProgressOld = this.animationProgress;
-        if (this.getBlockState() == ModBlocks.SWORD_PEDESTAL.get().getDefaultState()) {
-            this.animationProgress = 0.0F;
-        }
-        if (this.getBlockState().get(SwordPedestalBlock.HAS_MASTER_SWORD)) {
-            this.animationProgress += 0.1F;
-            if (this.animationProgress >= 1.0F) {
-                this.animationProgress = 0.0F;
+        if (this.world.isRemote()) {
+            if (this.getBlockState().get(SwordPedestalBlock.SHOULD_ANIMATION_START)) {
+                this.animationTicks++;
+            } else {
+                this.animationTicks = 0;
+                this.stillTicks = 0;
+            }
+            if (this.animationTicks >= 10) {
+                this.stillTicks++;
+            }
+            if (this.stillTicks >= 40) {
                 this.world.setBlockState(this.pos, ModBlocks.SWORD_PEDESTAL.get().getDefaultState());
+                this.animationTicks = 0;
+                this.stillTicks = 0;
             }
         }
     }
@@ -127,9 +130,5 @@ public class SwordPedestalTile extends TileEntity implements ITickableTileEntity
         this.swordInPedestal = stack;
         this.markDirty();
         this.world.notifyBlockUpdate(this.getPos(), this.getBlockState(), this.getBlockState(), 3);
-    }
-
-    public float getAnimationProgress(float progress) {
-        return MathHelper.lerp(progress, this.animationProgressOld, this.animationProgress);
     }
 }

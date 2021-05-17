@@ -10,6 +10,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.model.ItemCameraTransforms;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.item.ItemStack;
@@ -38,27 +41,18 @@ public class SwordPedestalTESR  extends TileEntityRenderer<SwordPedestalTile> {
 
         matrixStack.push();
 
-        matrixStack.translate(0.5D, 1.5D, 0.5D);
+        matrixStack.translate(0.5F, 1.5F, 0.5F);
         matrixStack.scale(1F, 1F, 1F);
         matrixStack.rotate(Vector3f.XP.rotationDegrees(180f));
         matrixStack.rotate(Vector3f.YP.rotationDegrees(180f));
         matrixStack.rotate(Vector3f.ZP.rotationDegrees(-45f));
-        if (blockstate.get(SwordPedestalBlock.HAS_MASTER_SWORD)) {
-            Matrix4f matrix4f = matrixStack.getLast().getMatrix();
-            IVertexBuilder ivertexbuilder = buffer.getBuffer(RenderType.getLightning());
-
-            matrixStack.push();
-
-            matrixStack.translate(0, (double)(-tileEntity.getAnimationProgress(partialTicks) * 0.5F), 0);
-
-            matrixStack.pop();
+        if (blockstate.get(SwordPedestalBlock.SHOULD_ANIMATION_START) && tileEntity.stillTicks <= 0) {
+            matrixStack.translate((tileEntity.animationTicks+partialTicks)*0.2F, -(tileEntity.animationTicks+partialTicks)*0.2F, 0);
+        } else if (tileEntity.stillTicks > 0) {
+            matrixStack.translate(2.2F, -2.2F, 0);
         }
-        renderer.renderItem(sword, FIXED, combinedLight, combinedOverlay, matrixStack, buffer);
+        renderer.renderItem(sword, FIXED, 240, OverlayTexture.NO_OVERLAY, matrixStack, buffer);
         matrixStack.pop();
-    }
-
-    private static void lightBlueBeams(IVertexBuilder ivertexbuilder, Matrix4f matrix4f) {
-        ivertexbuilder.pos(matrix4f, 0.0F, 0.0F, 0.0F).color(86, 237, 253, 1).endVertex();
     }
 
     @Override
