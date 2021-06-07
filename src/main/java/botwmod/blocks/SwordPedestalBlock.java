@@ -66,8 +66,8 @@ public class SwordPedestalBlock extends Block {
                 boolean isSword = stack.getItem() instanceof SwordItem;
 
                 if (hand == Hand.MAIN_HAND) {
-                    boolean isDisplayEmpty = pedestalTileEntity.getSwordInPedestal().isEmpty();
-                    if (isDisplayEmpty && isSword) {
+                    boolean isPedestalEmpty = pedestalTileEntity.getSwordInPedestal().isEmpty();
+                    if (isPedestalEmpty && isSword) {
                         ItemStack swordStack = stack.copy();
                         pedestalTileEntity.setSwordInPedestal(swordStack);
                         stack.shrink(1);

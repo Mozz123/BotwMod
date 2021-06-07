@@ -50,9 +50,51 @@ public class SwordPedestalTESR  extends TileEntityRenderer<SwordPedestalTile> {
             matrixStack.translate((tileEntity.animationTicks+partialTicks)*0.2F, -(tileEntity.animationTicks+partialTicks)*0.2F, 0);
         } else if (tileEntity.stillTicks > 0) {
             matrixStack.translate(2.2F, -2.2F, 0);
+            dragon(matrixStack, buffer, 0, 0, 0, tileEntity.stillTicks, partialTicks);
         }
         renderer.renderItem(sword, FIXED, 240, OverlayTexture.NO_OVERLAY, matrixStack, buffer);
         matrixStack.pop();
+    }
+
+    private static final float field_229057_l_ = (float)(Math.sqrt(3.0D) / 2.0D); // Got this from EnderDragonRenderer
+
+    public static void dragon(MatrixStack mStack, IRenderTypeBuffer buf, double x, double y, double z, int stillTicks, float partialTicks) {
+        float f5 = ((float)stillTicks + partialTicks) / 400.0F;
+        float f7 = Math.min(f5 > 0.8F ? (f5 - 0.8F) / 0.2F : 0.0F, 1.0F);
+        Random random = new Random(432L);
+        IVertexBuilder iVertexBuilder = buf.getBuffer(RenderType.getLightning());
+        mStack.push();
+        mStack.translate(x, y, z);
+
+        for(int i = 0; (float)i < (f5 + f5 * f5) / 2.0F * 60.0F; ++i) {
+            mStack.rotate(Vector3f.XP.rotationDegrees(random.nextFloat() * 360.0F));
+            mStack.rotate(Vector3f.YP.rotationDegrees(random.nextFloat() * 360.0F));
+            mStack.rotate(Vector3f.ZP.rotationDegrees(random.nextFloat() * 360.0F));
+            mStack.rotate(Vector3f.XP.rotationDegrees(random.nextFloat() * 360.0F));
+            mStack.rotate(Vector3f.YP.rotationDegrees(random.nextFloat() * 360.0F));
+            mStack.rotate(Vector3f.ZP.rotationDegrees(random.nextFloat() * 360.0F + f5 * 90.0F));
+            float f3 = random.nextFloat() * 20.0F + 5.0F + f7 * 10.0F;
+            float f4 = random.nextFloat() * 2.0F + 1.0F + f7 * 2.0F;
+            Matrix4f mat = mStack.getLast().getMatrix();
+            float alpha = 1 - f7;
+
+            // Credit for this bit of code goes to Elucent
+
+            iVertexBuilder.pos(mat, 0.0F, 0.0F, 0.0F).color(53, 81, 98, alpha).endVertex();
+            iVertexBuilder.pos(mat, 0.0F, 0.0F, 0.0F).color(53, 81, 98, alpha).endVertex();
+            iVertexBuilder.pos(mat, -field_229057_l_ * f4, f3, -0.5F * f4).color(53, 81, 98, 0).endVertex();
+            iVertexBuilder.pos(mat, field_229057_l_ * f4, f3, -0.5F * f4).color(53, 81, 98, 0).endVertex();
+            iVertexBuilder.pos(mat, 0.0F, 0.0F, 0.0F).color(53, 81, 98, alpha).endVertex();
+            iVertexBuilder.pos(mat, 0.0F, 0.0F, 0.0F).color(53, 81, 98, alpha).endVertex();
+            iVertexBuilder.pos(mat, field_229057_l_ * f4, f3, -0.5F * f4).color(53, 81, 98, 0).endVertex();
+            iVertexBuilder.pos(mat, 0.0F, f3, 1.0F * f4).color(53, 81, 98, 0).endVertex();
+            iVertexBuilder.pos(mat, 0.0F, 0.0F, 0.0F).color(53, 81, 98, alpha).endVertex();
+            iVertexBuilder.pos(mat, 0.0F, 0.0F, 0.0F).color(53, 81, 98, alpha).endVertex();
+            iVertexBuilder.pos(mat, 0.0F, f3, 1.0F * f4).color(53, 81, 98, 0).endVertex();
+            iVertexBuilder.pos(mat, -field_229057_l_ * f4, f3, -0.5F * f4).color(53, 81, 98, 0).endVertex();
+        }
+
+        mStack.pop();
     }
 
     @Override

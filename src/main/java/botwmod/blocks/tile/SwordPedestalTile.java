@@ -4,12 +4,14 @@ import botwmod.blocks.SwordPedestalBlock;
 import botwmod.registry.ModBlocks;
 import botwmod.registry.ModTiles;
 import net.minecraft.block.BlockState;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -43,10 +45,12 @@ public class SwordPedestalTile extends TileEntity implements ITickableTileEntity
             if (this.animationTicks >= 10) {
                 this.stillTicks++;
             }
-            if (this.stillTicks >= 40) {
+            if (this.stillTicks >= 100) {
                 this.world.setBlockState(this.pos, ModBlocks.SWORD_PEDESTAL.get().getDefaultState());
                 this.animationTicks = 0;
                 this.stillTicks = 0;
+                BlockPos pos = this.getPos();
+
             }
         }
     }
@@ -125,7 +129,7 @@ public class SwordPedestalTile extends TileEntity implements ITickableTileEntity
     public ItemStack getSwordInPedestal() {
         return this.swordInPedestal;
     }
-    
+
     public void setSwordInPedestal(ItemStack stack) {
         this.swordInPedestal = stack;
         this.markDirty();
