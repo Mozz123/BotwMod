@@ -35,23 +35,21 @@ public class SwordPedestalTile extends TileEntity implements ITickableTileEntity
 
     @Override
     public void tick() {
-        if (this.world.isRemote()) {
-            if (this.getBlockState().get(SwordPedestalBlock.SHOULD_ANIMATION_START)) {
-                this.animationTicks++;
-            } else {
-                this.animationTicks = 0;
-                this.stillTicks = 0;
-            }
-            if (this.animationTicks >= 10) {
-                this.stillTicks++;
-            }
-            if (this.stillTicks >= 100) {
-                this.world.setBlockState(this.pos, ModBlocks.SWORD_PEDESTAL.get().getDefaultState());
-                this.animationTicks = 0;
-                this.stillTicks = 0;
-                BlockPos pos = this.getPos();
-
-            }
+        if (this.getBlockState().get(SwordPedestalBlock.SHOULD_ANIMATION_START)) {
+            this.animationTicks++;
+        } else {
+            this.animationTicks = 0;
+            this.stillTicks = 0;
+        }
+        if (this.animationTicks >= 5) {
+            this.stillTicks++;
+        }
+        if (this.stillTicks >= 100) {
+            this.world.setBlockState(this.pos, ModBlocks.SWORD_PEDESTAL.get().getDefaultState());
+            this.animationTicks = 0;
+            this.stillTicks = 0;
+            BlockPos pos = this.getPos();
+            InventoryHelper.spawnItemStack(this.world, (double) pos.getX(), (double) pos.getY(), (double) pos.getZ(), this.swordInPedestal.getStack());
         }
     }
 
