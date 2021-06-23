@@ -13,8 +13,8 @@ public class OreGeneration {
 
     public static Decoration undergroundOre = GenerationStage.Decoration.UNDERGROUND_ORES;
 
-    public static ConfiguredFeature<?, ?> ORE_SAPPHIRE = Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, ModBlocks.SAPPHIRE_ORE.get().getDefaultState(), 2))
-            .range(16).square();
+    public static ConfiguredFeature<?, ?> ORE_SAPPHIRE = Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ModBlocks.SAPPHIRE_ORE.get().defaultBlockState(), 2))
+            .range(16).squared();
 
     public static void onBiomeLoadingEvent(BiomeLoadingEvent event) {
         if (event.getCategory() == Biome.Category.NETHER) {
@@ -22,7 +22,7 @@ public class OreGeneration {
         } else if (event.getCategory() == Biome.Category.THEEND) {
 
         } else {
-            event.getGeneration().withFeature(undergroundOre, ORE_SAPPHIRE);
+            event.getGeneration().addFeature(undergroundOre, ORE_SAPPHIRE);
         }
     }
 }

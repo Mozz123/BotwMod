@@ -22,6 +22,7 @@ public class ModItems {
     private static final Logger LOGGER = LogManager.getLogger(BotwMod.MODID + "-Items");
 
     // Gemstones
+
     public static final RegistryEntry<Item> SAPPHIRE = REGISTRATE
             .item("sapphire", Item::new)
             .defaultLang()
@@ -29,13 +30,15 @@ public class ModItems {
             .register();
 
     // Key Items
+
     public static final RegistryEntry<HeartContainerItem> HEART_CONTAINER = REGISTRATE
             .item("heart_container", HeartContainerItem::new)
             .defaultLang()
-            .properties(p -> p.maxStackSize(16).rarity(Rarity.RARE))
+            .properties(p -> p.stacksTo(16).rarity(Rarity.RARE))
             .register();
 
     // Swords
+
     public static final RegistryEntry<MasterSwordItem> MASTER_SWORD = REGISTRATE
             .item("master_sword", prop -> new MasterSwordItem(ModToolTiers.MASTER_SWORD, 2, -2.4f, prop))
             .model((ctx, provider) -> provider.handheld(ctx::getEntry))
@@ -47,6 +50,7 @@ public class ModItems {
             .register();
 
     // Projectiles
+
     public static final RegistryEntry<Item> BEAM_ATTACK = REGISTRATE
             .item("beam_attack", Item::new)
             .defaultLang()

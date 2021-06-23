@@ -22,9 +22,9 @@ public class HeartContainerItem extends Item {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
-        if (player.getCooldownTracker().hasCooldown(this)) {
-            return super.onItemRightClick(world, player, hand);
+    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+        if (player.getCooldowns().isOnCooldown(this)) {
+            return super.use(world, player, hand);
         }
         ModifiableAttributeInstance healthAttribute = player.getAttribute(Attributes.MAX_HEALTH);
         if (healthAttribute.getValue() < MAX) {
@@ -33,10 +33,10 @@ public class HeartContainerItem extends Item {
             double addedHealth = (oldHealthModifier == null) ? +4.0D : oldHealthModifier.getAmount() + 4.0D;
             healthAttribute.removeModifier(healthModifierUuid);
             AttributeModifier healthModifier = new AttributeModifier(healthModifierUuid, "Heart Container HP Bonus", addedHealth, AttributeModifier.Operation.ADDITION);
-            healthAttribute.applyPersistentModifier(healthModifier);
-            player.getCooldownTracker().setCooldown(this, COOLDOWN);
-            player.getHeldItem(hand).shrink(1);
+            healthAttribute.addPermanentModifier(healthModifier);
+            player.getCooldowns().addCooldown(this, COOLDOWN);
+            player.getItemInHand(hand).shrink(1);
         }
-        return super.onItemRightClick(world, player, hand);
+        return super.use(world, player, hand);
     }
 }

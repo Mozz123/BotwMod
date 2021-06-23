@@ -22,13 +22,13 @@ import net.minecraftforge.fml.network.NetworkHooks;
 public class FireArrowEntity extends AbstractArrowEntity {
     public FireArrowEntity(EntityType type, World worldIn) {
         super(type, worldIn);
-        this.setDamage(2.5F);
+        this.setBaseDamage(2.5F);
     }
 
     public FireArrowEntity(EntityType type, World worldIn, double x, double y, double z) {
         this(type, worldIn);
-        this.setPosition(x, y, z);
-        this.setDamage(2.5F);
+        this.setPos(x, y, z);
+        this.setBaseDamage(2.5F);
     }
 
     public FireArrowEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
@@ -37,48 +37,48 @@ public class FireArrowEntity extends AbstractArrowEntity {
 
     public FireArrowEntity(EntityType type, LivingEntity shooter, World worldIn) {
         super(type, shooter, worldIn);
-        this.setDamage(2.5F);
+        this.setBaseDamage(2.5F);
     }
 
     public void tick() {
         super.tick();
 
-        if (this.isWet()) {
+        if (this.isInWaterOrRain()) {
             this.remove();
         }
     }
 
     @Override
-    protected void arrowHit(LivingEntity living) {
-        super.arrowHit(living);
-        living.setFire(600);
+    protected void doPostHurtEffects(LivingEntity living) {
+        super.doPostHurtEffects(living);
+        living.setRemainingFireTicks(600);
     }
 
     @Override
-    protected void onImpact(RayTraceResult result) {
-        super.onImpact(result);
-        if (!this.world.isRemote) {
+    protected void onHit(RayTraceResult result) {
+        super.onHit(result);
+        if (!this.level.isClientSide) {
             RayTraceResult.Type result$type = result.getType();
             if (result$type == RayTraceResult.Type.BLOCK) {
                 BlockRayTraceResult target = (BlockRayTraceResult) result;
-                BlockPos pos = new BlockPos(target.getPos().getX(), target.getPos().getY(), target.getPos().getZ());
-                BlockPos pos1 = new BlockPos(target.getPos().getX(), target.getPos().getY()+1, target.getPos().getZ());
-                BlockPos pos2 = new BlockPos(target.getPos().getX(), target.getPos().getY()+2, target.getPos().getZ());
-                TNTBlock tntBlock = new TNTBlock(AbstractBlock.Properties.create(Material.TNT).zeroHardnessAndResistance().sound(SoundType.PLANT));
+                BlockPos pos = new BlockPos(target.getBlockPos().getX(), target.getBlockPos().getY(), target.getBlockPos().getZ());
+                BlockPos pos1 = new BlockPos(target.getBlockPos().getX(), target.getBlockPos().getY()+1, target.getBlockPos().getZ());
+                BlockPos pos2 = new BlockPos(target.getBlockPos().getX(), target.getBlockPos().getY()+2, target.getBlockPos().getZ());
+                TNTBlock tntBlock = new TNTBlock(AbstractBlock.Properties.of(Material.EXPLOSIVE).instabreak().sound(SoundType.GRASS));
 
-                if (world.getBlockState(pos2).getBlock() == Blocks.AIR && world.getBlockState(pos1).getBlock() == Blocks.AIR
-                        && world.getBlockState(pos).getBlock() != Blocks.ICE && world.getBlockState(pos).getBlock() != Blocks.PACKED_ICE
-                        && world.getBlockState(pos).getBlock() != Blocks.BLUE_ICE && world.getBlockState(pos).getBlock() != Blocks.TNT) {
-                    world.setBlockState(pos1, Blocks.FIRE.getDefaultState());
-                } else if (world.getBlockState(pos).getBlock() == Blocks.ICE) {
-                    world.setBlockState(pos, Blocks.WATER.getDefaultState());
-                } else if (world.getBlockState(pos).getBlock() == Blocks.PACKED_ICE) {
-                    world.setBlockState(pos, Blocks.ICE.getDefaultState());
-                } else if (world.getBlockState(pos).getBlock() == Blocks.BLUE_ICE) {
-                    world.setBlockState(pos, Blocks.PACKED_ICE.getDefaultState());
-                } else if (world.getBlockState(pos).getBlock() == Blocks.TNT) {
-                    world.setBlockState(pos, Blocks.AIR.getDefaultState());
-                    tntBlock.catchFire(world.getBlockState(pos), world, pos, null, null);
+                if (level.getBlockState(pos2).getBlock() == Blocks.AIR && level.getBlockState(pos1).getBlock() == Blocks.AIR
+                        && level.getBlockState(pos).getBlock() != Blocks.ICE && level.getBlockState(pos).getBlock() != Blocks.PACKED_ICE
+                        && level.getBlockState(pos).getBlock() != Blocks.BLUE_ICE && level.getBlockState(pos).getBlock() != Blocks.TNT) {
+                    level.setBlockAndUpdate(pos1, Blocks.FIRE.defaultBlockState());
+                } else if (level.getBlockState(pos).getBlock() == Blocks.ICE) {
+                    level.setBlockAndUpdate(pos, Blocks.WATER.defaultBlockState());
+                } else if (level.getBlockState(pos).getBlock() == Blocks.PACKED_ICE) {
+                    level.setBlockAndUpdate(pos, Blocks.ICE.defaultBlockState());
+                } else if (level.getBlockState(pos).getBlock() == Blocks.BLUE_ICE) {
+                    level.setBlockAndUpdate(pos, Blocks.PACKED_ICE.defaultBlockState());
+                } else if (level.getBlockState(pos).getBlock() == Blocks.TNT) {
+                    level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
+                    tntBlock.catchFire(level.getBlockState(pos), level, pos, null, null);
                 }
             }
         }
@@ -86,12 +86,12 @@ public class FireArrowEntity extends AbstractArrowEntity {
     }
 
     @Override
-    protected ItemStack getArrowStack() {
+    protected ItemStack getPickupItem() {
         return new ItemStack(ModItems.FIRE_ARROW.get());
     }
 
     @Override
-    public IPacket<?> createSpawnPacket() {
+    public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

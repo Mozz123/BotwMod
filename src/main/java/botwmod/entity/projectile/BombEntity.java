@@ -35,16 +35,16 @@ public class BombEntity extends ProjectileItemEntity {
     }
 
     @Override
-    protected void onImpact(RayTraceResult result) {
-        super.onImpact(result);
-        if (!this.world.isRemote) {
-            this.world.createExplosion(this, this.getPosX(), this.getPosYHeight(0.0625D), this.getPosZ(), 4.0F, Explosion.Mode.BREAK);
+    protected void onHit(RayTraceResult result) {
+        super.onHit(result);
+        if (!this.level.isClientSide) {
+            this.level.explode(this, this.getX(), this.getY(0.0625D), this.getZ(), 4.0F, Explosion.Mode.BREAK);
             this.remove();
         }
     }
 
     @Override
-    public IPacket<?> createSpawnPacket() {
+    public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

@@ -23,11 +23,11 @@ public class FrozenEffectLayer<T extends LivingEntity> extends LayerRenderer<T, 
 
     @Override
     public void render(MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn, LivingEntity living, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-        if (living.isPotionActive(ModEffects.FROZEN_EFFECT.get())) {
-            EntityModel model = this.renderer.getEntityModel();
+        if (living.hasEffect(ModEffects.FROZEN_EFFECT.get())) {
+            EntityModel model = this.renderer.getModel();
             float transparency = 1;
-            IVertexBuilder ivertexbuilder = bufferIn.getBuffer(RenderType.getEntityTranslucent(FROZEN_TEXTURE));
-            model.render(matrixStackIn, ivertexbuilder, packedLightIn, 1    , 1, 1, 1, transparency);
+            IVertexBuilder ivertexbuilder = bufferIn.getBuffer(RenderType.entityTranslucent(FROZEN_TEXTURE));
+            model.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, 1    , 1, 1, 1, transparency);
         }
     }
 

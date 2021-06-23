@@ -19,13 +19,13 @@ public class BombArrowEntity extends AbstractArrowEntity {
 
     public BombArrowEntity(EntityType type, World worldIn) {
         super(type, worldIn);
-        this.setDamage(2.5F);
+        this.setBaseDamage(2.5F);
     }
 
     public BombArrowEntity(EntityType type, World worldIn, double x, double y, double z) {
         this(type, worldIn);
-        this.setPosition(x, y, z);
-        this.setDamage(2.5F);
+        this.setPos(x, y, z);
+        this.setBaseDamage(2.5F);
     }
 
     public BombArrowEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
@@ -34,28 +34,27 @@ public class BombArrowEntity extends AbstractArrowEntity {
 
     public BombArrowEntity(EntityType type, LivingEntity shooter, World worldIn) {
         super(type, shooter, worldIn);
-        this.setDamage(2.5F);
-    }
-
-
-    @Override
-    protected ItemStack getArrowStack() {
-        return new ItemStack(ModItems.BOMB_ARROW.get());
+        this.setBaseDamage(2.5F);
     }
 
     @Override
-    protected void onImpact(RayTraceResult result) {
-        super.onImpact(result);
-        if (!this.world.isRemote) {
+    protected void onHit(RayTraceResult result) {
+        super.onHit(result);
+        if (!this.level.isClientSide) {
 
-            boolean flag = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.world, this.getShooter());
-            this.world.createExplosion((Entity) null, this.getPosX(), this.getPosY(), this.getPosZ(), (float) this.explosionStrength, flag, flag ? Explosion.Mode.NONE : Explosion.Mode.NONE);
+            boolean flag = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.getOwner());
+            this.level.explode((Entity) null, this.getX(), this.getY(), this.getZ(), (float) this.explosionStrength, flag, flag ? Explosion.Mode.NONE : Explosion.Mode.NONE);
             this.remove();
         }
     }
 
     @Override
-    public IPacket<?> createSpawnPacket() {
+    protected ItemStack getPickupItem() {
+        return new ItemStack(ModItems.BOMB_ARROW.get());
+    }
+
+    @Override
+    public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

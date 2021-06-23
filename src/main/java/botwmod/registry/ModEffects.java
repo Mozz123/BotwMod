@@ -21,7 +21,7 @@ public class ModEffects {
 
     public static final DeferredRegister<Effect> EFFECTS = DeferredRegister.create(ForgeRegistries.POTIONS, BotwMod.MODID);
 
-    public static final RegistryObject<Effect> FROZEN_EFFECT = EFFECTS.register("frozen", () -> new FrozenEffect(EffectType.HARMFUL, 0xd8e7ff).addAttributesModifier(Attributes.MOVEMENT_SPEED, FROZEN_UUID.toString(), -1.0D, AttributeModifier.Operation.MULTIPLY_TOTAL));
-    public static final RegistryObject<Effect> PARALYZED_EFFECT = EFFECTS.register("paralyzed", () -> new ParalyzedEffect(EffectType.HARMFUL, 0xd8e7ff).addAttributesModifier(ForgeMod.SWIM_SPEED.get(), PARALYZED_SWIM_UUID.toString(), -1000.0D, AttributeModifier.Operation.MULTIPLY_TOTAL).addAttributesModifier(Attributes.MOVEMENT_SPEED, PARALYZED_MOVEMENT_UUID.toString(), -1000.0D, AttributeModifier.Operation.MULTIPLY_TOTAL));
+    public static final RegistryObject<Effect> FROZEN_EFFECT = EFFECTS.register("frozen", () -> new FrozenEffect(EffectType.HARMFUL, 0xd8e7ff).addAttributeModifier(Attributes.MOVEMENT_SPEED, FROZEN_UUID.toString(), -1.0D, AttributeModifier.Operation.MULTIPLY_TOTAL));
+    public static final RegistryObject<Effect> PARALYZED_EFFECT = EFFECTS.register("paralyzed", () -> new ParalyzedEffect(EffectType.HARMFUL, 0xd8e7ff).addAttributeModifier(ForgeMod.SWIM_SPEED.get(), PARALYZED_SWIM_UUID.toString(), -1000.0D, AttributeModifier.Operation.MULTIPLY_TOTAL).addAttributeModifier(Attributes.MOVEMENT_SPEED, PARALYZED_MOVEMENT_UUID.toString(), -1000.0D, AttributeModifier.Operation.MULTIPLY_TOTAL));
 
 }

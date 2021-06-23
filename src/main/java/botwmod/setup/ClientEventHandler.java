@@ -34,7 +34,7 @@ public class ClientEventHandler {
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.FIRE_ARROW.get(), manager -> new FireArrowRender(manager));
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.SHOCK_ARROW.get(), manager -> new ShockArrowRender(manager));
         ClientRegistry.bindTileEntityRenderer(ModTiles.SWORD_PEDESTAL.get(), SwordPedestalTESR::new);
-        for (Map.Entry<EntityType<?>, EntityRenderer<?>> entry : Minecraft.getInstance().getRenderManager().renderers.entrySet()) {
+        for (Map.Entry<EntityType<?>, EntityRenderer<?>> entry : Minecraft.getInstance().getEntityRenderDispatcher().renderers.entrySet()) {
             EntityRenderer render = entry.getValue();
             if (render instanceof LivingRenderer) {
                 ((LivingRenderer) render).addLayer(new FrozenEffectLayer((LivingRenderer) render));

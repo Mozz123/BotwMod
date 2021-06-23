@@ -17,7 +17,7 @@ public class ModProfessions {
     public static final DeferredRegister<PointOfInterestType> POI_TYPES = DeferredRegister.create(ForgeRegistries.POI_TYPES, BotwMod.MODID);
 
     public static final RegistryObject<PointOfInterestType> JEWELER_POI = POI_TYPES.register("jeweler",
-            () -> new PointOfInterestType("jeweler", PointOfInterestType.getAllStates(ModBlocks.SAPPHIRE_ORE.get()), 1, 1)
+            () -> new PointOfInterestType("jeweler", PointOfInterestType.getBlockStates(ModBlocks.JEWELING_TABLE.get()), 1, 1)
     );
 
 

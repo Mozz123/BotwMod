@@ -24,19 +24,19 @@ public class BombEntityRender<T extends BombEntity> extends EntityRenderer<T> {
     }
 
     @Override
-    public ResourceLocation getEntityTexture(BombEntity entity) {
-        return AtlasTexture.LOCATION_BLOCKS_TEXTURE;
+    public ResourceLocation getTextureLocation(BombEntity entity) {
+        return AtlasTexture.LOCATION_BLOCKS;
     }
 
     @Override
     public void render(T entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-        matrixStackIn.push();
-        matrixStackIn.rotate(Vector3f.YP.rotationDegrees(MathHelper.lerp(partialTicks, entityIn.prevRotationYaw, entityIn.rotationYaw) + 0.0F));
+        matrixStackIn.pushPose();
+        matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(MathHelper.lerp(partialTicks, entityIn.yRotO, entityIn.yRot) + 0.0F));
         matrixStackIn.translate(0, 0.5F, 0);
         matrixStackIn.scale(2F, 2F, 2F);
         matrixStackIn.translate(0, -0.15F, 0);
-        Minecraft.getInstance().getItemRenderer().renderItem(TEXTURE, ItemCameraTransforms.TransformType.GROUND, 240, OverlayTexture.NO_OVERLAY, matrixStackIn, bufferIn);
-        matrixStackIn.pop();
+        Minecraft.getInstance().getItemRenderer().renderStatic(TEXTURE, ItemCameraTransforms.TransformType.GROUND, 240, OverlayTexture.NO_OVERLAY, matrixStackIn, bufferIn);
+        matrixStackIn.popPose();
         super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
     }
 }

@@ -22,13 +22,13 @@ import net.minecraftforge.fml.network.NetworkHooks;
 public class IceArrowEntity extends AbstractArrowEntity {
     public IceArrowEntity(EntityType type, World worldIn) {
         super(type, worldIn);
-        this.setDamage(2.5F);
+        this.setBaseDamage(2.5F);
     }
 
     public IceArrowEntity(EntityType type, World worldIn, double x, double y, double z) {
         this(type, worldIn);
-        this.setPosition(x, y, z);
-        this.setDamage(2.5F);
+        this.setPos(x, y, z);
+        this.setBaseDamage(2.5F);
     }
 
     public IceArrowEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
@@ -37,35 +37,29 @@ public class IceArrowEntity extends AbstractArrowEntity {
 
     public IceArrowEntity(EntityType type, LivingEntity shooter, World worldIn) {
         super(type, shooter, worldIn);
-        this.setDamage(2.5F);
-    }
-
-
-    @Override
-    protected ItemStack getArrowStack() {
-        return new ItemStack(ModItems.ICE_ARROW.get());
+        this.setBaseDamage(2.5F);
     }
 
     @Override
-    protected void arrowHit(LivingEntity living) {
-        super.arrowHit(living);
+    protected void doPostHurtEffects(LivingEntity living) {
+        super.doPostHurtEffects(living);
         EffectInstance effectinstance = new EffectInstance(ModEffects.FROZEN_EFFECT.get(), 600, 1);
-        living.addPotionEffect(effectinstance);
+        living.addEffect(effectinstance);
     }
 
     @Override
-    protected void onImpact(RayTraceResult result) {
-        super.onImpact(result);
-        if (!this.world.isRemote) {
+    protected void onHit(RayTraceResult result) {
+        super.onHit(result);
+        if (!this.level.isClientSide) {
             RayTraceResult.Type result$type = result.getType();
             if (result$type == RayTraceResult.Type.BLOCK) {
                 BlockRayTraceResult target = (BlockRayTraceResult) result;
-                BlockPos pos = new BlockPos(target.getPos().getX(), target.getPos().getY(), target.getPos().getZ());
-                BlockPos pos1 = new BlockPos(target.getPos().getX(), target.getPos().getY()+1, target.getPos().getZ());
-                BlockPos pos2 = new BlockPos(target.getPos().getX(), target.getPos().getY()+2, target.getPos().getZ());
+                BlockPos pos = new BlockPos(target.getBlockPos().getX(), target.getBlockPos().getY(), target.getBlockPos().getZ());
+                BlockPos pos1 = new BlockPos(target.getBlockPos().getX(), target.getBlockPos().getY()+1, target.getBlockPos().getZ());
+                BlockPos pos2 = new BlockPos(target.getBlockPos().getX(), target.getBlockPos().getY()+2, target.getBlockPos().getZ());
 
-                if (world.getBlockState(pos2).getBlock() == Blocks.AIR && world.getBlockState(pos1).getBlock() == Blocks.AIR) {
-                    world.setBlockState(pos1, ModBlocks.FROZEN_SPIKES.get().getDefaultState());
+                if (level.getBlockState(pos2).getBlock() == Blocks.AIR && level.getBlockState(pos1).getBlock() == Blocks.AIR) {
+                    level.setBlockAndUpdate(pos1, ModBlocks.FROZEN_SPIKES.get().defaultBlockState());
                 }
             }
         }
@@ -74,18 +68,23 @@ public class IceArrowEntity extends AbstractArrowEntity {
 
     @Override
     protected void onInsideBlock(BlockState state) {
-        BlockState pos = world.getBlockState(getPosition());
-        if (!this.isAirBorne) {
-            if(pos == Blocks.WATER.getDefaultState()) {
-                BlockPos currentPos = this.getPosition();
-                world.setBlockState(this.getOnPosition(), Blocks.ICE.getDefaultState());
+        BlockState pos = level.getBlockState(this.blockPosition());
+        if (!this.hasImpulse) {
+            if(pos == Blocks.WATER.defaultBlockState()) {
+                BlockPos currentPos = this.blockPosition();
+                level.setBlockAndUpdate(this.getOnPos(), Blocks.ICE.defaultBlockState());
                 this.remove();
             }
         }
     }
 
     @Override
-    public IPacket<?> createSpawnPacket() {
+    protected ItemStack getPickupItem() {
+        return new ItemStack(ModItems.ICE_ARROW.get());
+    }
+
+    @Override
+    public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

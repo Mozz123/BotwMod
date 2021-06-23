@@ -4,7 +4,6 @@ import botwmod.registry.*;
 import botwmod.setup.BOTWItemGroup;
 import botwmod.setup.ClientEventHandler;
 import botwmod.setup.CommonEventHandler;
-import botwmod.setup.ItemEvents;
 import botwmod.world.OreGeneration;
 import com.tterrag.registrate.Registrate;
 import net.minecraft.util.ResourceLocation;
@@ -44,9 +43,6 @@ public class BotwMod {
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 
-        forgeBus.addListener(EventPriority.NORMAL, this::addDimensionalSpacing);
-        forgeBus.addListener(EventPriority.HIGH, this::biomeModification);
-        modEventBus.addListener(this::setup);
         modEventBus.addListener(ClientEventHandler::init);
         modEventBus.addListener(CommonEventHandler::init);
         MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, OreGeneration::onBiomeLoadingEvent);
@@ -65,35 +61,6 @@ public class BotwMod {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    private void setup(final FMLCommonSetupEvent event) {
-        MinecraftForge.EVENT_BUS.register(new ItemEvents());
-
-        event.enqueueWork(() -> {
-            ModStructures.setupStructures();
-            ModConfiguredStructures.registerConfiguredStructures();
-        });
-    }
-
-    public void biomeModification(final BiomeLoadingEvent event) {
-        if (event.getCategory() == Biome.Category.TAIGA || event.getCategory() == Biome.Category.FOREST || event.getCategory() == Biome.Category.PLAINS
-                || event.getCategory() == Biome.Category.JUNGLE || event.getCategory() == Biome.Category.SWAMP) {
-            event.getGeneration().getStructures().add(() -> ModConfiguredStructures.CONFIGURED_MASTER_SWORD_PEDESTAL);
-        }
-    }
-
-    private static Method GETCODEC_METHOD;
-    public void addDimensionalSpacing(final WorldEvent.Load event) {
-        if (event.getWorld() instanceof ServerWorld) {
-            ServerWorld serverWorld = (ServerWorld) event.getWorld();
-            if (serverWorld.getChunkProvider().getChunkGenerator() instanceof FlatChunkGenerator &&
-                    serverWorld.getDimensionType().equals(World.OVERWORLD)) {
-                return;
-            }
-            Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(serverWorld.getChunkProvider().getChunkGenerator().func_235957_b_().field_236193_d_);
-            tempMap.putIfAbsent(ModStructures.MASTER_SWORD_PEDESTAL.get(), DimensionStructuresSettings.field_236191_b_.get(ModStructures.MASTER_SWORD_PEDESTAL.get()));
-            serverWorld.getChunkProvider().getChunkGenerator().func_235957_b_().field_236193_d_ = tempMap;
-        }
-    }
 
     public static ResourceLocation getLocation(String path) {
         return new ResourceLocation(BotwMod.MODID, path);

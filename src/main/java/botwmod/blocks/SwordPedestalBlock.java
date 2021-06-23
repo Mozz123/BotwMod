@@ -30,39 +30,44 @@ import javax.annotation.Nullable;
 
 public class SwordPedestalBlock extends Block {
     public static final BooleanProperty SHOULD_ANIMATION_START = BooleanProperty.create("should_animation_start");
+    public static final BooleanProperty NOT_ENOUGH_HP = BooleanProperty.create("not_enough_hp");
 
     public SwordPedestalBlock(AbstractBlock.Properties properties) {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(SHOULD_ANIMATION_START, Boolean.FALSE));
+        this.registerDefaultState(this.stateDefinition.any().setValue(SHOULD_ANIMATION_START, Boolean.FALSE).setValue(NOT_ENOUGH_HP, Boolean.FALSE));
     }
 
     @Override
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
-        TileEntity tileEntity = worldIn.getTileEntity(pos);
+    public void setPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+        TileEntity tileEntity = worldIn.getBlockEntity(pos);
         if (tileEntity instanceof SwordPedestalTile) {
-            tileEntity.validate();
-            worldIn.setTileEntity(pos, tileEntity);
+            tileEntity.clearRemoved();
+            worldIn.setBlockEntity(pos, tileEntity);
         }
     }
 
     @SuppressWarnings("deprecation")
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
-        TileEntity tileEntity = world.getTileEntity(pos);
-        if (!world.isRemote && tileEntity instanceof SwordPedestalTile) {
+    public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
+        TileEntity tileEntity = world.getBlockEntity(pos);
+        if (!world.isClientSide && tileEntity instanceof SwordPedestalTile) {
             SwordPedestalTile pedestalTileEntity = (SwordPedestalTile) tileEntity;
-            if (player.isSneaking()) {
-                if (player.getActiveHand() == Hand.MAIN_HAND && player.getHeldItemMainhand().isEmpty()) {
+            if (player.isCrouching()) {
+                if (player.getUsedItemHand() == Hand.MAIN_HAND && player.getMainHandItem().isEmpty()) {
                     final ItemStack swordInPedestal = pedestalTileEntity.getSwordInPedestal();
                     if (pedestalTileEntity.getSwordInPedestal().getItem() == ModItems.MASTER_SWORD.get()) {
-                        world.setBlockState(pos, state.with(SHOULD_ANIMATION_START, !state.get(SHOULD_ANIMATION_START)), 3);
+                        if (player.getMaxHealth() >= 30 || player.isCreative()) {
+                            world.setBlock(pos, state.setValue(SHOULD_ANIMATION_START, !state.getValue(SHOULD_ANIMATION_START)), 3);
+                        } else {
+                            world.setBlock(pos, state.setValue(NOT_ENOUGH_HP, !state.getValue(NOT_ENOUGH_HP)), 3);
+                        }
                     } else {
                         pedestalTileEntity.setSwordInPedestal(ItemStack.EMPTY);
-                        player.dropItem(swordInPedestal, false);
+                        player.drop(swordInPedestal, false);
                     }
                 }
             } else {
-                ItemStack stack = player.getHeldItem(hand);
+                ItemStack stack = player.getItemInHand(hand);
                 boolean isSword = stack.getItem() instanceof SwordItem;
 
                 if (hand == Hand.MAIN_HAND) {
@@ -81,26 +86,26 @@ public class SwordPedestalBlock extends Block {
 
     @SuppressWarnings("deprecation")
     @Override
-    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+    public void onRemove(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
         if (state.getBlock() != newState.getBlock()) {
-            TileEntity tileentity = worldIn.getTileEntity(pos);
+            TileEntity tileentity = worldIn.getBlockEntity(pos);
             if (tileentity instanceof SwordPedestalTile) {
-                InventoryHelper.spawnItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(),
+                InventoryHelper.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(),
                         ((SwordPedestalTile) tileentity).getSwordInPedestal().copy()
                 );
             }
-            super.onReplaced(state, worldIn, pos, newState, isMoving);
+            super.onRemove(state, worldIn, pos, newState, isMoving);
         }
     }
 
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return this.getDefaultState().with(SHOULD_ANIMATION_START, Boolean.FALSE);
+        return this.defaultBlockState().setValue(SHOULD_ANIMATION_START, Boolean.FALSE).setValue(NOT_ENOUGH_HP, Boolean.FALSE);
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(SHOULD_ANIMATION_START);
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+        builder.add(SHOULD_ANIMATION_START).add(NOT_ENOUGH_HP);
     }
 
     @Override

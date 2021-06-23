@@ -20,13 +20,13 @@ public class MasterSwordItem extends SwordItem {
 
     @Override
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
-        int durabilityLeft = stack.getMaxDamage() - stack.getDamage();
+        int durabilityLeft = stack.getMaxDamage() - stack.getDamageValue();
 
         if (entity instanceof LivingEntity) {
             LivingEntity livingEntity = (LivingEntity) entity;
             if (durabilityLeft <= 2 && stack.getItem() == ModItems.MASTER_SWORD.get()) {
-                player.getCooldownTracker().setCooldown(this, 18000);
-                stack.setDamage(0);
+                player.getCooldowns().addCooldown(this, 18000);
+                stack.setDamageValue(0);
             }
         }
 
@@ -34,9 +34,9 @@ public class MasterSwordItem extends SwordItem {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        ItemStack itemstack = playerIn.getHeldItem(handIn);
+    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+        ItemStack itemstack = playerIn.getItemInHand(handIn);
         CommonEventHandler.onRightClick(playerIn, itemstack);
-        return ActionResult.func_233538_a_(itemstack, worldIn.isRemote());
+        return ActionResult.sidedSuccess(itemstack, worldIn.isClientSide());
     }
 }

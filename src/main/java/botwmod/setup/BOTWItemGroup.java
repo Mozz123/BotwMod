@@ -15,16 +15,17 @@ public class BOTWItemGroup extends ItemGroup {
 
     @Nonnull
     @Override
-    public ItemStack createIcon() {
+    public ItemStack makeIcon() {
         return new ItemStack(ModItems.MASTER_SWORD.get());
     }
 
     @Override
-    public void fill(NonNullList<ItemStack> items) {
+    public void fillItemList(NonNullList<ItemStack> items) {
         registerWeapons(items);
         registerValuables(items);
         registerKeyItems(items);
         registerProjectiles(items);
+        registerBlocks(items);
     }
 
     private void registerWeapons(NonNullList<ItemStack> items) {

@@ -25,20 +25,20 @@ public class MasterSwordBeamEntityRender<T extends MasterSwordBeamEntity> extend
     }
 
     @Override
-    public ResourceLocation getEntityTexture(MasterSwordBeamEntity entity) {
-        return AtlasTexture.LOCATION_BLOCKS_TEXTURE;
+    public ResourceLocation getTextureLocation(MasterSwordBeamEntity entity) {
+        return AtlasTexture.LOCATION_BLOCKS;
     }
 
     @Override
     public void render(T entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-        matrixStackIn.push();
-        matrixStackIn.rotate(Vector3f.YP.rotationDegrees(MathHelper.lerp(partialTicks, entityIn.prevRotationYaw, entityIn.rotationYaw) - 90.0F));
-        matrixStackIn.rotate(Vector3f.ZP.rotationDegrees(MathHelper.lerp(partialTicks, entityIn.prevRotationPitch, entityIn.rotationPitch) - 90.0F));
+        matrixStackIn.pushPose();
+        matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(MathHelper.lerp(partialTicks, entityIn.yRotO, entityIn.yRot) - 90.0F));
+        matrixStackIn.mulPose(Vector3f.ZP.rotationDegrees(MathHelper.lerp(partialTicks, entityIn.xRotO, entityIn.xRot) - 90.0F));
         matrixStackIn.translate(0, 0.5F, 0);
         matrixStackIn.scale(2F, 2F, 2F);
         matrixStackIn.translate(0, -0.15F, 0);
-        Minecraft.getInstance().getItemRenderer().renderItem(TEXTURE, ItemCameraTransforms.TransformType.GROUND, 240, OverlayTexture.NO_OVERLAY, matrixStackIn, bufferIn);
-        matrixStackIn.pop();
+        Minecraft.getInstance().getItemRenderer().renderStatic(TEXTURE, ItemCameraTransforms.TransformType.GROUND, 240, OverlayTexture.NO_OVERLAY, matrixStackIn, bufferIn);
+        matrixStackIn.popPose();
         super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
     }
 }

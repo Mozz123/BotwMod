@@ -23,18 +23,18 @@ public class MasterSwordBeamEntity extends AbstractArrowEntity {
 
     public MasterSwordBeamEntity(EntityType type, World world) {
         super(type, world);
-        this.setDamage(10F);
+        this.setBaseDamage(10F);
     }
 
     public MasterSwordBeamEntity(EntityType type, World worldIn, double x, double y, double z, float r, float g, float b) {
         this(type, worldIn);
-        this.setPosition(x, y, z);
-        this.setDamage(10F);
+        this.setPos(x, y, z);
+        this.setBaseDamage(10F);
     }
 
     public MasterSwordBeamEntity(EntityType type, World worldIn, LivingEntity shooter, double dmg) {
         super(type, shooter, worldIn);
-        this.setDamage(dmg);
+        this.setBaseDamage(dmg);
     }
 
     public MasterSwordBeamEntity(FMLPlayMessages.SpawnEntity spawnEntity, World worldIn) {
@@ -45,8 +45,8 @@ public class MasterSwordBeamEntity extends AbstractArrowEntity {
     public void tick() {
         super.tick();
 
-        Entity thrower = getShooter();
-        if (this.ticksExisted > lifespan) {
+        Entity thrower = getOwner();
+        if (this.tickCount > lifespan) {
             remove();
             return;
         }
@@ -55,38 +55,38 @@ public class MasterSwordBeamEntity extends AbstractArrowEntity {
             return;
         }
 
-        this.updatePitchAndYaw();
+        this.updateRotation();
     }
 
     @Override
-    protected void onEntityHit(EntityRayTraceResult p_213868_1_) {
-        super.onEntityHit(p_213868_1_);
+    protected void onHitEntity(EntityRayTraceResult p_213868_1_) {
+        super.onHitEntity(p_213868_1_);
         Entity entity = p_213868_1_.getEntity();
-        entity.attackEntityFrom(DamageSource.causeIndirectMagicDamage(this, this.getShooter()), (float) this.getDamage());
+        entity.hurt(DamageSource.indirectMagic(this, this.getOwner()), (float) this.getBaseDamage());
     }
 
     @Override
-    protected ItemStack getArrowStack() {
+    protected ItemStack getPickupItem() {
         return ItemStack.EMPTY;
     }
 
     public double particleDistSq(double toX, double toY, double toZ) {
-        double d0 = getPosX() - toX;
-        double d1 = getPosY() - toY;
-        double d2 = getPosZ() - toZ;
+        double d0 = this.getX() - toX;
+        double d1 = getY() - toY;
+        double d2 = getZ() - toZ;
         return d0 * d0 + d1 * d1 + d2 * d2;
     }
 
     @Override
-    protected void onImpact(RayTraceResult raytrace) {
-        super.onImpact(raytrace);
+    protected void onHit(RayTraceResult raytrace) {
+        super.onHit(raytrace);
         if (this.isAlive()) {
             remove();
         }
     }
 
     @Override
-    public boolean hasNoGravity() {
+    public boolean isNoGravity() {
         if (this.isInWater()) {
             return false;
         } else {
@@ -95,7 +95,7 @@ public class MasterSwordBeamEntity extends AbstractArrowEntity {
     }
 
     @Override
-    public boolean isPushedByWater() {
+    public boolean isPushedByFluid() {
         return false;
     }
 
@@ -109,7 +109,7 @@ public class MasterSwordBeamEntity extends AbstractArrowEntity {
     }
 
     @Override
-    public IPacket<?> createSpawnPacket() {
+    public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

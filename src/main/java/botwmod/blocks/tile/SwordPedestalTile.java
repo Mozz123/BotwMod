@@ -35,7 +35,7 @@ public class SwordPedestalTile extends TileEntity implements ITickableTileEntity
 
     @Override
     public void tick() {
-        if (this.getBlockState().get(SwordPedestalBlock.SHOULD_ANIMATION_START)) {
+        if (this.getBlockState().getValue(SwordPedestalBlock.SHOULD_ANIMATION_START)) {
             this.animationTicks++;
         } else {
             this.animationTicks = 0;
@@ -45,62 +45,62 @@ public class SwordPedestalTile extends TileEntity implements ITickableTileEntity
             this.stillTicks++;
         }
         if (this.stillTicks >= 100) {
-            this.world.setBlockState(this.pos, ModBlocks.SWORD_PEDESTAL.get().getDefaultState());
+            this.getLevel().setBlockAndUpdate(this.getBlockPos(), ModBlocks.SWORD_PEDESTAL.get().defaultBlockState());
             this.animationTicks = 0;
             this.stillTicks = 0;
-            BlockPos pos = this.getPos();
-            InventoryHelper.spawnItemStack(this.world, (double) pos.getX(), (double) pos.getY(), (double) pos.getZ(), this.swordInPedestal.getStack());
+            BlockPos pos = this.getBlockPos();
+            InventoryHelper.dropItemStack(this.getLevel(), (double) pos.getX(), (double) pos.getY(), (double) pos.getZ(), this.swordInPedestal.getStack());
         }
     }
 
     @Override
-    public void markDirty() {
-        super.markDirty();
+    public void setChanged() {
+        super.setChanged();
     }
 
     @Override
-    public void read(BlockState state, CompoundNBT nbt) {
-        super.read(state, nbt);
+    public void load(BlockState state, CompoundNBT nbt) {
+        super.load(state, nbt);
         this.loadFromNBT(nbt);
     }
 
     @Override
-    public CompoundNBT write(CompoundNBT compound) {
-        super.write(compound);
+    public CompoundNBT save(CompoundNBT compound) {
+        super.save(compound);
         this.saveToNbt(compound);
         return compound;
     }
 
     public CompoundNBT saveToNbt(CompoundNBT compound) {
-        compound.put("sword_in_pedestal", this.swordInPedestal.write(new CompoundNBT()));
+        compound.put("sword_in_pedestal", this.swordInPedestal.save(new CompoundNBT()));
         return compound;
     }
 
     public void loadFromNBT(CompoundNBT compound) {
         if (compound.contains("sword_in_pedestal", Constants.NBT.TAG_COMPOUND)) {
-            this.swordInPedestal = ItemStack.read(compound.getCompound("sword_in_pedestal"));
+            this.swordInPedestal = ItemStack.of(compound.getCompound("sword_in_pedestal"));
         }
     }
 
     @Override
     @Nullable
     public SUpdateTileEntityPacket getUpdatePacket() {
-        return new SUpdateTileEntityPacket(this.pos, 12, this.getUpdateTag());
+        return new SUpdateTileEntityPacket(this.getBlockPos(), 12, this.getUpdateTag());
     }
 
     @Override
     public CompoundNBT getUpdateTag() {
-        return this.write(new CompoundNBT());
+        return this.save(new CompoundNBT());
     }
 
     @Override
     public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
-        this.read(world.getBlockState(pkt.getPos()), pkt.getNbtCompound());
+        this.load(this.getLevel().getBlockState(pkt.getPos()), pkt.getTag());
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public double getMaxRenderDistanceSquared() {
+    public double getViewDistance() {
         return 65536.0D;
     }
 
@@ -110,18 +110,18 @@ public class SwordPedestalTile extends TileEntity implements ITickableTileEntity
     }
 
     @Override
-    public boolean receiveClientEvent(int id, int type) {
-        return super.receiveClientEvent(id, type);
+    public boolean triggerEvent(int id, int type) {
+        return super.triggerEvent(id, type);
     }
 
     @Override
-    public World getWorld() {
-        return this.world;
+    public World getLevel() {
+        return this.level;
     }
 
     @Override
-    public BlockPos getPos() {
-        return this.pos;
+    public BlockPos getBlockPos() {
+        return this.worldPosition;
     }
 
     public ItemStack getSwordInPedestal() {
@@ -130,7 +130,7 @@ public class SwordPedestalTile extends TileEntity implements ITickableTileEntity
 
     public void setSwordInPedestal(ItemStack stack) {
         this.swordInPedestal = stack;
-        this.markDirty();
-        this.world.notifyBlockUpdate(this.getPos(), this.getBlockState(), this.getBlockState(), 3);
+        this.setChanged();
+        this.getLevel().sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 3);
     }
 }

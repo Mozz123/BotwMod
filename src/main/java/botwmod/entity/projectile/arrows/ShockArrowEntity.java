@@ -21,13 +21,13 @@ import java.util.List;
 public class ShockArrowEntity extends AbstractArrowEntity {
     public ShockArrowEntity(EntityType type, World worldIn) {
         super(type, worldIn);
-        this.setDamage(2.5F);
+        this.setBaseDamage(2.5F);
     }
 
     public ShockArrowEntity(EntityType type, World worldIn, double x, double y, double z) {
         this(type, worldIn);
-        this.setPosition(x, y, z);
-        this.setDamage(2.5F);
+        this.setPos(x, y, z);
+        this.setBaseDamage(2.5F);
     }
 
     public ShockArrowEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
@@ -36,7 +36,7 @@ public class ShockArrowEntity extends AbstractArrowEntity {
 
     public ShockArrowEntity(EntityType type, LivingEntity shooter, World worldIn) {
         super(type, shooter, worldIn);
-        this.setDamage(2.5F);
+        this.setBaseDamage(2.5F);
     }
 
     public void tick() {
@@ -44,36 +44,36 @@ public class ShockArrowEntity extends AbstractArrowEntity {
     }
 
     @Override
-    protected void arrowHit(LivingEntity living) {
-        super.arrowHit(living);
+    protected void doPostHurtEffects(LivingEntity living) {
+        super.doPostHurtEffects(living);
         EffectInstance effectinstance = new EffectInstance(ModEffects.PARALYZED_EFFECT.get(), 40, 1);
-        living.addPotionEffect(effectinstance);
+        living.addEffect(effectinstance);
 
-        if (living.isWet()) {
-            this.setDamage(this.getDamage() * 2);
+        if (living.isInWaterOrRain()) {
+            this.setBaseDamage(this.getBaseDamage() * 2);
         }
 
-        ItemStack mainhandstack = living.getItemStackFromSlot(EquipmentSlotType.MAINHAND);
-        ItemStack offhandstack = living.getItemStackFromSlot(EquipmentSlotType.OFFHAND);
+        ItemStack mainhandstack = living.getItemBySlot(EquipmentSlotType.MAINHAND);
+        ItemStack offhandstack = living.getItemBySlot(EquipmentSlotType.OFFHAND);
         if (living.hasItemInSlot(EquipmentSlotType.MAINHAND)) {
-            living.entityDropItem(mainhandstack);
-            living.setItemStackToSlot(EquipmentSlotType.MAINHAND, ItemStack.EMPTY);
+            living.spawnAtLocation(mainhandstack);
+            living.setItemSlot(EquipmentSlotType.MAINHAND, ItemStack.EMPTY);
         }
         if (living.hasItemInSlot(EquipmentSlotType.OFFHAND)) {
-            living.entityDropItem(offhandstack);
-            living.setItemStackToSlot(EquipmentSlotType.OFFHAND, ItemStack.EMPTY);
+            living.spawnAtLocation(offhandstack);
+            living.setItemSlot(EquipmentSlotType.OFFHAND, ItemStack.EMPTY);
         }
 
-        if (living.isWet() && living.isInWater()) {
+        if (living.isInWaterOrRain() && living.isInWater()) {
             double radius = 10;
-            AxisAlignedBB axisalignedbb = new AxisAlignedBB(this.getOnPosition()).grow(radius).expand(0.0D, this.world.getHeight(), 0.0D);
-            List<Entity> getEntitiesInBB = world.getEntitiesWithinAABB(Entity.class, axisalignedbb);
+            AxisAlignedBB axisalignedbb = new AxisAlignedBB(this.getOnPos()).inflate(radius).expandTowards(0.0D, this.level.getHeight(), 0.0D);
+            List<Entity> getEntitiesInBB = level.getEntitiesOfClass(Entity.class, axisalignedbb);
             for (Entity entity : getEntitiesInBB) {
                 if (entity instanceof LivingEntity) {
                     LivingEntity livingInBB = (LivingEntity) entity;
                     if (livingInBB.isInWater()) {
                         EffectInstance effectinstanceInBB = new EffectInstance(ModEffects.PARALYZED_EFFECT.get(), 60, 1);
-                        livingInBB.addPotionEffect(effectinstanceInBB);
+                        livingInBB.addEffect(effectinstanceInBB);
                     }
                 }
             }
@@ -81,12 +81,12 @@ public class ShockArrowEntity extends AbstractArrowEntity {
     }
 
     @Override
-    protected ItemStack getArrowStack() {
+    protected ItemStack getPickupItem() {
         return new ItemStack(ModItems.SHOCK_ARROW.get());
     }
 
     @Override
-    public IPacket<?> createSpawnPacket() {
+    public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }
