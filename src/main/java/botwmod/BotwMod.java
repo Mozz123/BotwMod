@@ -56,7 +56,6 @@ public class BotwMod {
         ModProfessions.PROFESSIONS.register(modEventBus);
         ModProfessions.POI_TYPES.register(modEventBus);
         ModEffects.EFFECTS.register(modEventBus);
-        ModStructures.STRUCTURES.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
     }

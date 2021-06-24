@@ -1,9 +1,11 @@
 79000181787ffa2e0bb15e0a1b69d140cc4822ff assets/botwmod/blockstates/frozen_spikes.json
+22ebc6a360e3af212eb5d759921bec1040da1f43 assets/botwmod/blockstates/jeweling_table.json
 72a7639bd5743d14f80b4992eec5778c6cf8e7b8 assets/botwmod/blockstates/sapphire_ore.json
 b0b86da8378be78777680f138ae048063dc3b56b assets/botwmod/blockstates/sword_pedestal.json
-378204379d9eac0168a7d5aa3e9beeb88d04d2bf assets/botwmod/lang/en_ud.json
-2e97e4a99dca557d77d8ce3669cea108d79248c3 assets/botwmod/lang/en_us.json
+6a0d72c83ba79ab9e9ce9637fa08727b6921e24e assets/botwmod/lang/en_ud.json
+491645ac367745735b1c5f9198d311dbc2e674c8 assets/botwmod/lang/en_us.json
 9170677852a6a53e2f0bd4a02a730b1fa392ace8 assets/botwmod/models/block/frozen_spikes.json
+82b003d9a5fbf95037958c61ad9841e31764dad1 assets/botwmod/models/block/jeweling_table.json
 c881fdc4f82acbf1912d388ddb1e6d719b6d787b assets/botwmod/models/block/sapphire_ore.json
 fcd031676db03e2780f23b9887da67e979116e71 assets/botwmod/models/block/sword_pedestal.json
 04671fe11ee3ce66cd667bd6d74f31e241f5f7c7 assets/botwmod/models/item/beam_attack.json
@@ -12,6 +14,7 @@ e4f029e1fe240b36b108cd0e27fa7185e3eac642 assets/botwmod/models/item/bomb.json
 99c532b4a8a54b134d48b34de9a8e952dd143f86 assets/botwmod/models/item/fire_arrow.json
 1b9057b673649d21694047bc2caa27aa57edd9b0 assets/botwmod/models/item/heart_container.json
 b293c344e5eaf7f714a9f27d453866ccdea8d425 assets/botwmod/models/item/ice_arrow.json
+1f9f89a4044a2c948cf75cf1fe7232e6d376ec74 assets/botwmod/models/item/jeweling_table.json
 a2fca4d32dd0315bb59b4b9628bef21d424dc1b2 assets/botwmod/models/item/master_sword.json
 4ca8beb2152a49e3ee7c3d442ed763901c005241 assets/botwmod/models/item/master_sword_awakened.json
 436ef050344240b4a20083552755479c08dfae8f assets/botwmod/models/item/sapphire.json
@@ -19,6 +22,7 @@ a2fca4d32dd0315bb59b4b9628bef21d424dc1b2 assets/botwmod/models/item/master_sword
 52bec0befb296ef711460def3801ad618469d231 assets/botwmod/models/item/shock_arrow.json
 c063348f104add23b5564937de15b14edb1587b7 assets/botwmod/models/item/sword_pedestal.json
 205f5899101262f31f5c1a88bb7d954918d08d04 data/botwmod/loot_tables/blocks/frozen_spikes.json
+29d866e4949b298eda2454ed976aebd3ba4c4ae8 data/botwmod/loot_tables/blocks/jeweling_table.json
 36b77cfbc51b6d98c2b1223d38ee2e4efbbebfa5 data/botwmod/loot_tables/blocks/sapphire_ore.json
 8fe36e68ccb4f9ed1739e63067594120b3082a2d data/botwmod/loot_tables/blocks/sword_pedestal.json
 bdedaa5275912a31406a3e152a2890d6faccfd52 data/minecraft/tags/items/arrows.json
