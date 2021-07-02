@@ -46,14 +46,8 @@ public class SwordPedestalTESR  extends TileEntityRenderer<SwordPedestalTile> {
         matrixStack.mulPose(Vector3f.XP.rotationDegrees(180f));
         matrixStack.mulPose(Vector3f.YP.rotationDegrees(90f));
         matrixStack.mulPose(Vector3f.ZP.rotationDegrees(-45f));
-        if (blockstate.equals(SwordPedestalBlock.SHOULD_ANIMATION_START) && tileEntity.stillTicks <= 0) {
+        if (blockstate.getValue(SwordPedestalBlock.SHOULD_ANIMATION_START) && tileEntity.stillTicks == 0) {
             matrixStack.translate((tileEntity.animationTicks+partialTicks)*0.2F, -(tileEntity.animationTicks+partialTicks)*0.2F, 0);
-        } else if (blockstate.equals(SwordPedestalBlock.NOT_ENOUGH_HP)) {
-            for (int i = 0; i < 5; i++) {
-                matrixStack.translate(0.1F, 0.1F, 0);
-
-                //matrixStack.translate(0, 1.5F, 0.5F);
-            }
         } else if (tileEntity.stillTicks > 0) {
             matrixStack.translate(1.1F, -1.1F, 0);
             beams(matrixStack, buffer, 0, 0, 0, tileEntity.stillTicks, partialTicks);
@@ -62,7 +56,7 @@ public class SwordPedestalTESR  extends TileEntityRenderer<SwordPedestalTile> {
         matrixStack.popPose();
     }
 
-    private static final float field_229057_l_ = (float)(Math.sqrt(3.0D) / 2.0D); // Got this from EnderDragonRenderer
+    private static final float HALF_SQRT_3 = (float)(Math.sqrt(3.0D) / 2.0D); // Got this from EnderDragonRenderer
 
     public static void beams(MatrixStack mStack, IRenderTypeBuffer buf, double x, double y, double z, int stillTicks, float partialTicks) {
         float f5 = ((float)stillTicks + partialTicks) / 400.0F;
@@ -88,16 +82,16 @@ public class SwordPedestalTESR  extends TileEntityRenderer<SwordPedestalTile> {
 
             iVertexBuilder.vertex(mat, 0.0F, 0.0F, 0.0F).color(53, 81, 98, alpha).endVertex();
             iVertexBuilder.vertex(mat, 0.0F, 0.0F, 0.0F).color(53, 81, 98, alpha).endVertex();
-            iVertexBuilder.vertex(mat, -field_229057_l_ * f4, f3, -0.5F * f4).color(53, 81, 98, 0).endVertex();
-            iVertexBuilder.vertex(mat, field_229057_l_ * f4, f3, -0.5F * f4).color(53, 81, 98, 0).endVertex();
+            iVertexBuilder.vertex(mat, -HALF_SQRT_3 * f4, f3, -0.5F * f4).color(53, 81, 98, 0).endVertex();
+            iVertexBuilder.vertex(mat, HALF_SQRT_3 * f4, f3, -0.5F * f4).color(53, 81, 98, 0).endVertex();
             iVertexBuilder.vertex(mat, 0.0F, 0.0F, 0.0F).color(53, 81, 98, alpha).endVertex();
             iVertexBuilder.vertex(mat, 0.0F, 0.0F, 0.0F).color(53, 81, 98, alpha).endVertex();
-            iVertexBuilder.vertex(mat, field_229057_l_ * f4, f3, -0.5F * f4).color(53, 81, 98, 0).endVertex();
+            iVertexBuilder.vertex(mat, HALF_SQRT_3 * f4, f3, -0.5F * f4).color(53, 81, 98, 0).endVertex();
             iVertexBuilder.vertex(mat, 0.0F, f3, 1.0F * f4).color(53, 81, 98, 0).endVertex();
             iVertexBuilder.vertex(mat, 0.0F, 0.0F, 0.0F).color(53, 81, 98, alpha).endVertex();
             iVertexBuilder.vertex(mat, 0.0F, 0.0F, 0.0F).color(53, 81, 98, alpha).endVertex();
             iVertexBuilder.vertex(mat, 0.0F, f3, 1.0F * f4).color(53, 81, 98, 0).endVertex();
-            iVertexBuilder.vertex(mat, -field_229057_l_ * f4, f3, -0.5F * f4).color(53, 81, 98, 0).endVertex();
+            iVertexBuilder.vertex(mat, -HALF_SQRT_3 * f4, f3, -0.5F * f4).color(53, 81, 98, 0).endVertex();
         }
 
         mStack.popPose();

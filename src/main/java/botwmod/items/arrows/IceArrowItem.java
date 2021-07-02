@@ -8,6 +8,8 @@ import net.minecraft.item.ArrowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import net.minecraft.item.Item.Properties;
+
 public class IceArrowItem extends ArrowItem {
     public IceArrowItem(Properties builder) {
         super(builder);

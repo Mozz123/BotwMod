@@ -8,6 +8,8 @@ import net.minecraft.item.ArrowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import net.minecraft.item.Item.Properties;
+
 public class ShockArrowItem extends ArrowItem {
     public ShockArrowItem(Properties builder) {
         super(builder);

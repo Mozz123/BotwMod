@@ -1,0 +1,15 @@
+{
+  "name": "botwmod:master_sword_pedestal/pedestal_pool",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "location": "botwmod:master_sword_pedestal",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

@@ -23,6 +23,7 @@ import net.minecraft.util.math.shapes.IBooleanFunction;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
@@ -59,7 +60,7 @@ public class SwordPedestalBlock extends Block {
                         if (player.getMaxHealth() >= 30 || player.isCreative()) {
                             world.setBlock(pos, state.setValue(SHOULD_ANIMATION_START, !state.getValue(SHOULD_ANIMATION_START)), 3);
                         } else {
-                            world.setBlock(pos, state.setValue(NOT_ENOUGH_HP, !state.getValue(NOT_ENOUGH_HP)), 3);
+                            player.displayClientMessage(new TranslationTextComponent("botwmod.pedestal.lowhp"), true);
                         }
                     } else {
                         pedestalTileEntity.setSwordInPedestal(ItemStack.EMPTY);

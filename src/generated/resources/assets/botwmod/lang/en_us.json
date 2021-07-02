@@ -3,6 +3,7 @@
   "block.botwmod.jeweling_table": "Jeweling Table",
   "block.botwmod.sapphire_ore": "Sapphire Ore",
   "block.botwmod.sword_pedestal": "Sword Pedestal",
+  "botwmod.pedestal.lowhp": "You do not have enough hp for this",
   "entity.botwmod.bomb": "Bomb",
   "entity.botwmod.bomb_arrow": "Bomb Arrow",
   "entity.botwmod.fire_arrow": "Fire Arrow",

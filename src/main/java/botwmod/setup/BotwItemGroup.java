@@ -8,8 +8,8 @@ import net.minecraft.util.NonNullList;
 
 import javax.annotation.Nonnull;
 
-public class BOTWItemGroup extends ItemGroup {
-    public BOTWItemGroup(String label) {
+public class BotwItemGroup extends ItemGroup {
+    public BotwItemGroup(String label) {
         super(label);
     }
 
