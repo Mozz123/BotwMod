@@ -44,7 +44,7 @@ public class SwordPedestalTESR  extends TileEntityRenderer<SwordPedestalTile> {
         matrixStack.translate(0.5F, 1.5F, 0.5F);
         matrixStack.scale(1F, 1F, 1F);
         matrixStack.mulPose(Vector3f.XP.rotationDegrees(180f));
-        matrixStack.mulPose(Vector3f.YP.rotationDegrees(90f));
+        matrixStack.mulPose(Vector3f.YP.rotationDegrees(-90f));
         matrixStack.mulPose(Vector3f.ZP.rotationDegrees(-45f));
         if (blockstate.getValue(SwordPedestalBlock.SHOULD_ANIMATION_START) && tileEntity.stillTicks == 0) {
             matrixStack.translate((tileEntity.animationTicks+partialTicks)*0.2F, -(tileEntity.animationTicks+partialTicks)*0.2F, 0);

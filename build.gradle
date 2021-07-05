@@ -21,6 +21,9 @@ repositories {
         name 'tterrag maven'
         url "https://maven.tterrag.com/"
     }
+    maven { // Blame
+        url "https://nexus.resourcefulbees.com/repository/maven-public/"
+    }
 }
 
 apply plugin: 'idea'
@@ -46,6 +49,9 @@ minecraft {
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
 
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+
             mods {
                 botwmod {
                     source sourceSets.main
@@ -57,6 +63,9 @@ minecraft {
             workingDirectory project.file('run')
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
+
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
             mods {
                 botwmod {
@@ -93,6 +102,8 @@ dependencies {
     def registrate = "com.tterrag.registrate:Registrate:MC1.16.5-1.0.5"
     implementation fg.deobf(registrate)
     shade registrate
+
+    runtimeOnly fg.deobf("com.telepathicgrunt:Blame:1.16.5-3.2.3-forge")
 }
 
 shadowJar {
