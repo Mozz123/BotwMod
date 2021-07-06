@@ -24,14 +24,14 @@ import net.minecraft.world.gen.feature.structure.StructureStart;
 import net.minecraft.world.gen.feature.structure.VillageConfig;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 
-public class MasterSwordPedestalStructure extends Structure<NoFeatureConfig> {
-    public MasterSwordPedestalStructure(Codec<NoFeatureConfig> codec) {
+public class CartsStructure extends Structure<NoFeatureConfig> {
+    public CartsStructure(Codec<NoFeatureConfig> codec) {
         super(codec);
     }
 
     @Override
     public IStartFactory<NoFeatureConfig> getStartFactory() {
-        return MasterSwordPedestalStructure.Start::new;
+        return CartsStructure.Start::new;
     }
 
     @Override
@@ -67,17 +67,17 @@ public class MasterSwordPedestalStructure extends Structure<NoFeatureConfig> {
             JigsawManager.addPieces(
                     dynamicRegistryManager,
                     new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY)
-                            .get(new ResourceLocation(BotwMod.MODID, "master_sword_pedestal/pedestal_pool")),
+                            .get(new ResourceLocation(BotwMod.MODID, "carts/cart_broken_pool")),
                             1),
-                            AbstractVillagePiece::new,
-                            chunkGenerator,
-                            templateManager,
-                            blockpos,
-                            this.pieces,
-                            this.random,
-                            false,
-                            true);
-            
+                    AbstractVillagePiece::new,
+                    chunkGenerator,
+                    templateManager,
+                    blockpos,
+                    this.pieces,
+                    this.random,
+                    false,
+                    true);
+
             this.calculateBoundingBox();
 
         }
