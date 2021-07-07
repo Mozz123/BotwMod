@@ -1,0 +1,40 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "weight": 1,
+          "name": "botwmod:chests/carts/treasure"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "weight": 1,
+          "name": "botwmod:chests/carts/meats"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "weight": 1,
+          "name": "botwmod:chests/carts/iron"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "weight": 1,
+          "name": "botwmod:chests/carts/gunpowder"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "weight": 1,
+          "name": "botwmod:chests/carts/clay"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "weight": 1,
+          "name": "botwmod:chests/carts/bread"
+        }
+      ]
+    }
+  ]
+}
