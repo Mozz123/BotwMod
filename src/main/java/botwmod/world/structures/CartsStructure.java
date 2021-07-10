@@ -68,7 +68,7 @@ public class CartsStructure extends Structure<NoFeatureConfig> {
                     dynamicRegistryManager,
                     new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY)
                             .get(new ResourceLocation(BotwMod.MODID, "carts/cart_broken_pool")),
-                            1),
+                            10),
                     AbstractVillagePiece::new,
                     chunkGenerator,
                     templateManager,
