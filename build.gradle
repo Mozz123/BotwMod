@@ -109,7 +109,14 @@ dependencies {
 shadowJar {
     configurations = [project.configurations.shade]
     relocate 'com.tterrag.registrate', 'botwmod.repack.registrate'
+    classifier ''
 }
+
+    reobf {
+        shadowJar {}
+    }
+
+    build.dependsOn reobfShadowJar
 
 jar {
     manifest {
@@ -124,8 +131,6 @@ jar {
         ])
     }
 }
-
-jar.finalizedBy('reobfJar')
 
 publishing {
     publications {
