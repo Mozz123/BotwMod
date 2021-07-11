@@ -80,6 +80,7 @@ public class BotwMod {
             event.getGeneration().getStructures().add(() -> ModConfiguredStructures.CONFIGURED_MASTER_SWORD_PEDESTAL);
         }
         event.getGeneration().getStructures().add(() -> ModConfiguredStructures.CONFIGURED_CARTS_STRUCTURE);
+        event.getGeneration().getStructures().add(() -> ModConfiguredStructures.CONFIGURED_RUINS_STRUCTURE);
     }
 
     private static Method GETCODEC_METHOD;
@@ -104,6 +105,7 @@ public class BotwMod {
             Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(serverWorld.getChunkSource().generator.getSettings().structureConfig());
             tempMap.putIfAbsent(ModStructures.MASTER_SWORD_PEDESTAL.get(), DimensionStructuresSettings.DEFAULTS.get(ModStructures.MASTER_SWORD_PEDESTAL.get()));
             tempMap.putIfAbsent(ModStructures.CARTS_STRUCTURE.get(), DimensionStructuresSettings.DEFAULTS.get(ModStructures.CARTS_STRUCTURE.get()));
+            tempMap.putIfAbsent(ModStructures.RUINS_STRUCTURE.get(), DimensionStructuresSettings.DEFAULTS.get(ModStructures.RUINS_STRUCTURE.get()));
             serverWorld.getChunkSource().generator.getSettings().structureConfig = tempMap;
         }
     }
