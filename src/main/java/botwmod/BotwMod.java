@@ -11,6 +11,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.FlatChunkGenerator;
 import net.minecraft.world.gen.feature.structure.Structure;
@@ -79,8 +80,12 @@ public class BotwMod {
         if (event.getCategory() == Biome.Category.FOREST) {
             event.getGeneration().getStructures().add(() -> ModConfiguredStructures.CONFIGURED_MASTER_SWORD_PEDESTAL);
         }
+        if (event.getCategory() == Biome.Category.FOREST || event.getCategory() == Biome.Category.PLAINS ||
+                event.getCategory() == Biome.Category.EXTREME_HILLS || event.getName().equals(Biomes.SNOWY_TUNDRA.getRegistryName())) {
+            event.getGeneration().getStructures().add(() -> ModConfiguredStructures.CONFIGURED_RUINS_STRUCTURE);
+            event.getGeneration().getStructures().add(() -> ModConfiguredStructures.CONFIGURED_RUIN_GARDEN_STRUCTURE);
+        }
         event.getGeneration().getStructures().add(() -> ModConfiguredStructures.CONFIGURED_CARTS_STRUCTURE);
-        event.getGeneration().getStructures().add(() -> ModConfiguredStructures.CONFIGURED_RUINS_STRUCTURE);
     }
 
     private static Method GETCODEC_METHOD;
@@ -106,6 +111,7 @@ public class BotwMod {
             tempMap.putIfAbsent(ModStructures.MASTER_SWORD_PEDESTAL.get(), DimensionStructuresSettings.DEFAULTS.get(ModStructures.MASTER_SWORD_PEDESTAL.get()));
             tempMap.putIfAbsent(ModStructures.CARTS_STRUCTURE.get(), DimensionStructuresSettings.DEFAULTS.get(ModStructures.CARTS_STRUCTURE.get()));
             tempMap.putIfAbsent(ModStructures.RUINS_STRUCTURE.get(), DimensionStructuresSettings.DEFAULTS.get(ModStructures.RUINS_STRUCTURE.get()));
+            tempMap.putIfAbsent(ModStructures.RUIN_GARDEN_STRUCTURE.get(), DimensionStructuresSettings.DEFAULTS.get(ModStructures.RUIN_GARDEN_STRUCTURE.get()));
             serverWorld.getChunkSource().generator.getSettings().structureConfig = tempMap;
         }
     }

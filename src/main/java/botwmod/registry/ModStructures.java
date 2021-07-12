@@ -3,6 +3,7 @@ package botwmod.registry;
 import botwmod.BotwMod;
 import botwmod.world.structures.CartsStructure;
 import botwmod.world.structures.MasterSwordPedestalStructure;
+import botwmod.world.structures.RuinGardenStructure;
 import botwmod.world.structures.RuinsStructure;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
@@ -24,6 +25,8 @@ public class ModStructures {
     public static final RegistryObject<Structure<NoFeatureConfig>> MASTER_SWORD_PEDESTAL = STRUCTURES.register("master_sword_pedestal", () -> (new MasterSwordPedestalStructure(NoFeatureConfig.CODEC)));
     public static final RegistryObject<Structure<NoFeatureConfig>> CARTS_STRUCTURE = STRUCTURES.register("carts_structure", () -> (new CartsStructure(NoFeatureConfig.CODEC)));
     public static final RegistryObject<Structure<NoFeatureConfig>> RUINS_STRUCTURE = STRUCTURES.register("ruins_structure", () -> (new RuinsStructure(NoFeatureConfig.CODEC)));
+    public static final RegistryObject<Structure<NoFeatureConfig>> RUIN_GARDEN_STRUCTURE = STRUCTURES.register("ruin_garden_structure", () -> (new RuinGardenStructure(NoFeatureConfig.CODEC)));
+
 
     public static void setupStructures() {
         setupMapSpacingAndLand(
@@ -31,9 +34,12 @@ public class ModStructures {
                 new StructureSeparationSettings(50, 40, 10685344), true);
         setupMapSpacingAndLand(
                 CARTS_STRUCTURE.get(),
-                new StructureSeparationSettings(30, 20, 15784567), true);
+                new StructureSeparationSettings(25, 15, 15784567), true);
         setupMapSpacingAndLand(
                 RUINS_STRUCTURE.get(),
+                new StructureSeparationSettings(30, 20, 15784567), true);
+        setupMapSpacingAndLand(
+                RUIN_GARDEN_STRUCTURE.get(),
                 new StructureSeparationSettings(30, 20, 15784567), true);
     }
 

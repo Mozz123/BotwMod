@@ -10,7 +10,6 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.util.registry.DynamicRegistries;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.IBiomeReader;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProvider;
@@ -25,16 +24,14 @@ import net.minecraft.world.gen.feature.structure.StructureStart;
 import net.minecraft.world.gen.feature.structure.VillageConfig;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 
-import java.util.Random;
-
-public class RuinsStructure extends Structure<NoFeatureConfig> {
-    public RuinsStructure(Codec<NoFeatureConfig> codec) {
+public class RuinGardenStructure extends Structure<NoFeatureConfig> {
+    public RuinGardenStructure(Codec<NoFeatureConfig> codec) {
         super(codec);
     }
 
     @Override
     public IStartFactory<NoFeatureConfig> getStartFactory() {
-        return RuinsStructure.Start::new;
+        return RuinGardenStructure.Start::new;
     }
 
     @Override
@@ -70,8 +67,8 @@ public class RuinsStructure extends Structure<NoFeatureConfig> {
             JigsawManager.addPieces(
                     dynamicRegistryManager,
                     new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY)
-                            .get(new ResourceLocation(BotwMod.MODID, "ruins/ruin_start_pool")),
-                            6),
+                            .get(new ResourceLocation(BotwMod.MODID, "ruins/garden_pool")),
+                            1),
                     AbstractVillagePiece::new,
                     chunkGenerator,
                     templateManager,
